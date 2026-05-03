@@ -1,0 +1,20 @@
+{
+  "name": "Secure Code Warrior Training Structure",
+  "description": "Structural documentation for Secure Code Warrior training progress and leaderboard data",
+  "properties": {
+    "userId": { "type": "string", "description": "Unique user identifier" },
+    "email": { "type": "string", "description": "Developer email address" },
+    "rank": { "type": "integer", "description": "Leaderboard rank position" },
+    "points": { "type": "integer", "description": "Total training points earned" },
+    "completions": { "type": "integer", "description": "Number of challenges completed" },
+    "change": { "type": "integer", "description": "Rank change over reporting period" },
+    "realm": { "type": "string", "description": "Current training realm (e.g., Web, Mobile, API)" },
+    "level": { "type": "integer", "description": "Current level within the realm" },
+    "quests_completed": { "type": "integer", "description": "Number of quests completed" },
+    "training_minutes": { "type": "integer", "description": "Minutes spent on training challenges" },
+    "assessment_minutes": { "type": "integer", "description": "Minutes spent on assessments" },
+    "course_minutes": { "type": "integer", "description": "Minutes spent on courses" },
+    "tournament_minutes": { "type": "integer", "description": "Minutes spent in tournaments" },
+    "total_minutes": { "type": "integer", "description": "Total minutes on the platform" }
+  }
+}

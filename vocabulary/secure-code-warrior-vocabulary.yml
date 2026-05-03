@@ -1,0 +1,84 @@
+name: Secure Code Warrior Vocabulary
+description: >-
+  Vocabulary and taxonomy for the Secure Code Warrior developer security training platform
+  covering application security concepts, training modalities, assessment types, and platform features.
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: Challenge
+    definition: >-
+      An interactive, hands-on security coding exercise presented to developers to
+      identify and fix vulnerabilities in code snippets in a specific language and framework.
+    tags: [Training, Core Entity]
+
+  - term: Assessment
+    definition: >-
+      A structured evaluation of developer security knowledge using a set of challenges.
+      Assessments can be assigned to users or teams and tracked for completion.
+    tags: [Evaluation, Core Entity]
+
+  - term: Tournament
+    definition: >-
+      A competitive time-limited security training event where developers race to complete
+      challenges and earn points on a shared leaderboard.
+    tags: [Gamification, Training]
+
+  - term: Course
+    definition: >-
+      A structured learning path combining challenges, videos, and guides focused on
+      a specific security topic, language, or framework.
+    tags: [Learning, Training]
+
+  - term: Program
+    definition: >-
+      A higher-level training initiative that groups multiple courses into a structured
+      security education curriculum for teams or the whole organization.
+    tags: [Learning, Management]
+
+  - term: Realm
+    definition: >-
+      A thematic grouping of security challenges in the Secure Code Warrior gamification
+      system, such as Web, Mobile, API, or Infrastructure.
+    tags: [Gamification, Classification]
+
+  - term: CWE
+    definition: >-
+      Common Weakness Enumeration - a community-developed list of software security
+      weaknesses used by Secure Code Warrior to tag and surface relevant training content.
+    tags: [Standards, Security]
+
+  - term: OWASP
+    definition: >-
+      Open Web Application Security Project - a nonprofit foundation whose Top 10 vulnerability
+      list is used to organize Secure Code Warrior training content and assessments.
+    tags: [Standards, Security]
+
+  - term: Direct Linking API
+    definition: >-
+      A RESTful JSON API that returns training material URLs by CWE or OWASP reference,
+      enabling partner tools (GitHub, SARIF scanners) to embed contextual learning content.
+    tags: [API, Integration]
+
+  - term: Report API Key
+    definition: >-
+      A read-only API authentication key used to access training progress reports,
+      leaderboards, assessment data, and metrics endpoints.
+    tags: [Authentication, API]
+
+  - term: Admin API Key
+    definition: >-
+      A read-write API authentication key granting full access including user management,
+      team administration, course and assessment assignment, and audit log access.
+    tags: [Authentication, API]
+
+  - term: Trust Agent
+    definition: >-
+      A Secure Code Warrior browser extension that monitors developer activity and
+      provides real-time security coaching within the development environment.
+    tags: [Tool, Integration]
+
+  - term: SARIF
+    definition: >-
+      Static Analysis Results Interchange Format - a standard format for static analysis
+      tool output. Secure Code Warrior integrates with SARIF to add training links to code scanning alerts.
+    tags: [Standards, Integration]

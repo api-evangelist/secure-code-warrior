@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/secure-code-warrior/refs/heads/main/json-schema/secure-code-warrior-user-schema.json",
+  "title": "Secure Code Warrior User",
+  "description": "A developer user enrolled in the Secure Code Warrior security training platform.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique user identifier"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User email address (primary identifier)"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "First name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name"
+    },
+    "role": {
+      "type": "string",
+      "description": "Platform role",
+      "enum": ["developer", "team_lead", "admin"]
+    },
+    "teams": {
+      "type": "array",
+      "description": "Team memberships",
+      "items": { "type": "string" }
+    },
+    "tags": {
+      "type": "array",
+      "description": "User tags for filtering and grouping",
+      "items": { "type": "string" }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Account creation timestamp"
+    },
+    "lastActiveAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last platform activity timestamp"
+    }
+  },
+  "required": ["id", "email"]
+}

@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://portal-api.securecodewarrior.com/api/v2/training/developer-leaderboard?report_period=30&page=1",
+    "headers": {
+      "X-API-Key": "your_report_api_key"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "entries": [
+        {
+          "rank": 1,
+          "user": {
+            "id": "usr_001",
+            "email": "alice@example.com",
+            "firstName": "Alice",
+            "lastName": "Johnson",
+            "role": "developer",
+            "teams": ["backend-team"],
+            "tags": ["python", "api"]
+          },
+          "points": 4850,
+          "completions": 97,
+          "change": 3
+        },
+        {
+          "rank": 2,
+          "user": {
+            "id": "usr_002",
+            "email": "bob@example.com",
+            "firstName": "Bob",
+            "lastName": "Chen",
+            "role": "developer",
+            "teams": ["frontend-team"],
+            "tags": ["javascript", "react"]
+          },
+          "points": 4420,
+          "completions": 88,
+          "change": -1
+        }
+      ],
+      "total": 45,
+      "page": 1
+    }
+  }
+}
