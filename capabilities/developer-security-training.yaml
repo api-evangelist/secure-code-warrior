@@ -1,250 +1,424 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Secure Code Warrior Developer Security Training"
-  description: >-
-    Unified developer security training capability for the Secure Code Warrior platform.
-    Enables security and engineering leaders to manage users, teams, and assessments,
-    track training progress and engagement, generate security training reports, and
-    audit platform activity across the organization.
+  label: Secure Code Warrior Developer Security Training
+  description: Unified developer security training capability for the Secure Code Warrior platform. Enables security and engineering
+    leaders to manage users, teams, and assessments, track training progress and engagement, generate security training reports,
+    and audit platform activity across the organization.
   tags:
-    - Security Training
-    - Application Security
-    - DevSecOps
-    - Developer Training
-    - Reporting
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - Security Training
+  - Application Security
+  - DevSecOps
+  - Developer Training
+  - Reporting
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SCW_API_KEY: SCW_API_KEY
-
+- namespace: env
+  keys:
+    SCW_API_KEY: SCW_API_KEY
 capability:
   consumes:
-    - import: scw-portal
-      location: ./shared/portal.yaml
-
+  - type: http
+    namespace: scw-portal
+    baseUri: https://portal-api.securecodewarrior.com/api/v2
+    description: Secure Code Warrior Portal API for training management and reporting
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{SCW_API_KEY}}'
+      placement: header
+    resources:
+    - name: users
+      path: /users
+      description: Manage platform users
+      operations:
+      - name: list-users
+        method: GET
+        description: List all users in the organization
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-user
+        method: POST
+        description: Create a new user account
+        body:
+          type: json
+          data:
+            email: '{{tools.email}}'
+            firstName: '{{tools.firstName}}'
+            lastName: '{{tools.lastName}}'
+            role: '{{tools.role}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams
+      path: /teams
+      description: Manage teams
+      operations:
+      - name: list-teams
+        method: GET
+        description: List all teams in the organization
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+        - name: name
+          in: query
+          type: string
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: developer-leaderboard
+      path: /training/developer-leaderboard
+      description: Developer training leaderboard
+      operations:
+      - name: get-developer-leaderboard
+        method: GET
+        description: Get developer leaderboard with training stats
+        inputParameters:
+        - name: report_period
+          in: query
+          type: integer
+          required: false
+          description: Report period in days (1, 7, or 30)
+        - name: page
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: developers-progress
+      path: /training/developers-progress
+      description: Developer training progress
+      operations:
+      - name: get-developers-progress
+        method: GET
+        description: Get training progress with realm, level, and quest data
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: assessments
+      path: /assessments
+      description: Manage security assessments
+      operations:
+      - name: list-assessments
+        method: GET
+        description: List all assessments in the organization
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+        - name: startdate
+          in: query
+          type: string
+          required: false
+        - name: enddate
+          in: query
+          type: string
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: courses
+      path: /courses
+      description: Manage security courses
+      operations:
+      - name: list-courses
+        method: GET
+        description: List all available security training courses
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: time-spent
+      path: /metrics/time-spent
+      description: Time spent metrics
+      operations:
+      - name: get-time-spent
+        method: GET
+        description: Get time spent across training activities
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+        - name: team
+          in: query
+          type: string
+          required: false
+        - name: startdate
+          in: query
+          type: string
+          required: false
+        - name: enddate
+          in: query
+          type: string
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: audit-log
+      path: /audit-log
+      description: System audit log
+      operations:
+      - name: get-audit-log
+        method: GET
+        description: Retrieve system audit logs
+        inputParameters:
+        - name: from_date
+          in: query
+          type: string
+          required: true
+        - name: to_date
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: security-training-api
-      description: "Unified REST API for Secure Code Warrior developer security training management."
-      resources:
-        - path: /v1/users
-          name: users
-          description: "User management"
-          operations:
-            - method: GET
-              name: list-users
-              description: "List all platform users"
-              call: "scw-portal.list-users"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-user
-              description: "Create a new user"
-              call: "scw-portal.create-user"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/teams
-          name: teams
-          description: "Team management"
-          operations:
-            - method: GET
-              name: list-teams
-              description: "List all teams"
-              call: "scw-portal.list-teams"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/training/leaderboard
-          name: developer-leaderboard
-          description: "Developer training leaderboard"
-          operations:
-            - method: GET
-              name: get-developer-leaderboard
-              description: "Get developer leaderboard with training stats"
-              call: "scw-portal.get-developer-leaderboard"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/training/progress
-          name: training-progress
-          description: "Training progress reporting"
-          operations:
-            - method: GET
-              name: get-developers-progress
-              description: "Get training progress per developer"
-              call: "scw-portal.get-developers-progress"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/assessments
-          name: assessments
-          description: "Security assessments"
-          operations:
-            - method: GET
-              name: list-assessments
-              description: "List all assessments"
-              call: "scw-portal.list-assessments"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/courses
-          name: courses
-          description: "Security training courses"
-          operations:
-            - method: GET
-              name: list-courses
-              description: "List all courses"
-              call: "scw-portal.list-courses"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/metrics/time-spent
-          name: time-spent
-          description: "Training time metrics"
-          operations:
-            - method: GET
-              name: get-time-spent
-              description: "Get time spent on training activities"
-              call: "scw-portal.get-time-spent"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/audit-log
-          name: audit-log
-          description: "System audit log"
-          operations:
-            - method: GET
-              name: get-audit-log
-              description: "Get system audit log"
-              call: "scw-portal.get-audit-log"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: security-training-mcp
-      transport: http
-      description: "MCP server for AI-assisted developer security training management."
-      tools:
-        - name: list-users
-          description: "List all developers enrolled in Secure Code Warrior security training"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.list-users"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-user
-          description: "Enroll a new developer in the Secure Code Warrior security training platform"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "scw-portal.create-user"
-          with:
-            email: "tools.email"
-            firstName: "tools.firstName"
-            lastName: "tools.lastName"
-            role: "tools.role"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-teams
-          description: "List all security training teams within the organization"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.list-teams"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-developer-leaderboard
-          description: "Get developer security training leaderboard showing points, completions, and rank changes"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.get-developer-leaderboard"
-          with:
-            report_period: "tools.report_period"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-training-progress
-          description: "Get detailed training progress for all developers including realm, level, and quest completion"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.get-developers-progress"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-assessments
-          description: "List security knowledge assessments with their status, language coverage, and difficulty levels"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.list-assessments"
-          with:
-            startdate: "tools.startdate"
-            enddate: "tools.enddate"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-courses
-          description: "List available secure coding courses organized by language and security topic"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.list-courses"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-time-spent
-          description: "Get total time developers have spent on security training, assessments, courses, and tournaments"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.get-time-spent"
-          with:
-            team: "tools.team"
-            startdate: "tools.startdate"
-            enddate: "tools.enddate"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-audit-log
-          description: "Retrieve platform audit log showing user actions and administrative changes"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "scw-portal.get-audit-log"
-          with:
-            from_date: "tools.from_date"
-            to_date: "tools.to_date"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: security-training-api
+    description: Unified REST API for Secure Code Warrior developer security training management.
+    resources:
+    - path: /v1/users
+      name: users
+      description: User management
+      operations:
+      - method: GET
+        name: list-users
+        description: List all platform users
+        call: scw-portal.list-users
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-user
+        description: Create a new user
+        call: scw-portal.create-user
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams
+      name: teams
+      description: Team management
+      operations:
+      - method: GET
+        name: list-teams
+        description: List all teams
+        call: scw-portal.list-teams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/training/leaderboard
+      name: developer-leaderboard
+      description: Developer training leaderboard
+      operations:
+      - method: GET
+        name: get-developer-leaderboard
+        description: Get developer leaderboard with training stats
+        call: scw-portal.get-developer-leaderboard
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/training/progress
+      name: training-progress
+      description: Training progress reporting
+      operations:
+      - method: GET
+        name: get-developers-progress
+        description: Get training progress per developer
+        call: scw-portal.get-developers-progress
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/assessments
+      name: assessments
+      description: Security assessments
+      operations:
+      - method: GET
+        name: list-assessments
+        description: List all assessments
+        call: scw-portal.list-assessments
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/courses
+      name: courses
+      description: Security training courses
+      operations:
+      - method: GET
+        name: list-courses
+        description: List all courses
+        call: scw-portal.list-courses
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metrics/time-spent
+      name: time-spent
+      description: Training time metrics
+      operations:
+      - method: GET
+        name: get-time-spent
+        description: Get time spent on training activities
+        call: scw-portal.get-time-spent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/audit-log
+      name: audit-log
+      description: System audit log
+      operations:
+      - method: GET
+        name: get-audit-log
+        description: Get system audit log
+        call: scw-portal.get-audit-log
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: security-training-mcp
+    transport: http
+    description: MCP server for AI-assisted developer security training management.
+    tools:
+    - name: list-users
+      description: List all developers enrolled in Secure Code Warrior security training
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.list-users
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-user
+      description: Enroll a new developer in the Secure Code Warrior security training platform
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: scw-portal.create-user
+      with:
+        email: tools.email
+        firstName: tools.firstName
+        lastName: tools.lastName
+        role: tools.role
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teams
+      description: List all security training teams within the organization
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.list-teams
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-developer-leaderboard
+      description: Get developer security training leaderboard showing points, completions, and rank changes
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.get-developer-leaderboard
+      with:
+        report_period: tools.report_period
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-training-progress
+      description: Get detailed training progress for all developers including realm, level, and quest completion
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.get-developers-progress
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-assessments
+      description: List security knowledge assessments with their status, language coverage, and difficulty levels
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.list-assessments
+      with:
+        startdate: tools.startdate
+        enddate: tools.enddate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-courses
+      description: List available secure coding courses organized by language and security topic
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.list-courses
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-time-spent
+      description: Get total time developers have spent on security training, assessments, courses, and tournaments
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.get-time-spent
+      with:
+        team: tools.team
+        startdate: tools.startdate
+        enddate: tools.enddate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-audit-log
+      description: Retrieve platform audit log showing user actions and administrative changes
+      hints:
+        readOnly: true
+        openWorld: false
+      call: scw-portal.get-audit-log
+      with:
+        from_date: tools.from_date
+        to_date: tools.to_date
+      outputParameters:
+      - type: object
+        mapping: $.
