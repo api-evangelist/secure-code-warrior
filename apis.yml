@@ -69,6 +69,64 @@ description: >-
   a REST API supporting user management, training progress reporting, assessment assignment
   and tracking, tournament management, metrics, and audit logging, with GitHub and CI/CD
   pipeline integrations for contextual in-workflow security coaching.
+integrations:
+  - name: asterisk
+  - name: shield lock
+  - name: code blocks
+  - name: service toolbox
+  - name: school
+  - name: plug connect
+  - name: list alt
+  - name: finance chip
+  - name: tech
+  - name: government
+  - name: directions car
+  - name: health cross
+  - name: shoppingmode
+  - name: security update good
+  - name: ai
+  - name: typcn warning outline
+  - name: simple icons owasp
+  - name: mdi company
+  - name: construction
+  - name: fingerprint
+  - name: hub
+  - name: article
+  - name: event
+  - name: tabler route
+  - name: sidekickicons checklist boxes
+  - name: mdi partnership outline
+  - name: carbon network 1
+  - name: mdi contact outline
+  - name: check box
+  - name: shield locked
+  - name: help center
+  - name: accessibility
+  - name: SCW
+  - name: person book
+  - name: news
+  - name: cases
+  - name: Subpage Hero BG
+  - name: our approach deco
+  - name: Developer tools
+  - name: Security Tools
+  - name: Automation Tools
+  - name: Educational Tools
+  - name: Scalable and engaging
+  - name: Languages and frameworks
+  - name: Fun & interactive
+  - name: partner page image
+  - name: Quotes
+  - name: colgate palmolive
+  - name: 66423e90d33575f8134529c1 Derek Fisher
+  - name: 66423e5d82da5cde6eb735ea Mads Howard
+  - name: nab
+  - name: 6695668dcf203e2ba365c744 image 131
+  - name: image 15
+  - name: image 16
+  - name: image 17
+  - name: image 18
+  - name: websights
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -109,3 +167,5 @@ common:
     type: NaftikoCapability
   - url: vocabulary/secure-code-warrior-vocabulary.yml
     type: Vocabulary
+  - type: Integrations
+    url: https://www.securecodewarrior.com/product/integrations
