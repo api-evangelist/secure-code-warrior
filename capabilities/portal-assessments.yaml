@@ -1,0 +1,200 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Secure Code Warrior Portal API — Assessments
+  description: 'Secure Code Warrior Portal API — Assessments. 3 operations. Lead operation: List Assessments. Self-contained
+    Naftiko capability covering one Secure Code Warrior business surface.'
+  tags:
+  - Secure Code Warrior
+  - Assessments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SECURE_CODE_WARRIOR_API_KEY: SECURE_CODE_WARRIOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: portal-assessments
+    baseUri: https://portal-api.securecodewarrior.com/api/v2
+    description: Secure Code Warrior Portal API — Assessments business capability. Self-contained, no shared references.
+    resources:
+    - name: assessments
+      path: /assessments
+      operations:
+      - name: listassessments
+        method: GET
+        description: List Assessments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: startdate
+          in: query
+          type: string
+        - name: enddate
+          in: query
+          type: string
+    - name: assessments-assessment_id-assign
+      path: /assessments/{assessment_id}/assign
+      operations:
+      - name: assignassessment
+        method: POST
+        description: Assign Assessment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assessment_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: assessments-assessment_id-attempts
+      path: /assessments/{assessment_id}/attempts
+      operations:
+      - name: listassessmentattempts
+        method: GET
+        description: List Assessment Attempts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assessment_id
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: developer
+          in: query
+          type: string
+          description: Filter by developer email
+        - name: startdate
+          in: query
+          type: string
+        - name: enddate
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SECURE_CODE_WARRIOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: portal-assessments-rest
+    port: 8080
+    description: REST adapter for Secure Code Warrior Portal API — Assessments. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/assessments
+      name: assessments
+      description: REST surface for assessments.
+      operations:
+      - method: GET
+        name: listassessments
+        description: List Assessments
+        call: portal-assessments.listassessments
+        with:
+          page: rest.page
+          startdate: rest.startdate
+          enddate: rest.enddate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/assessments/{assessment-id}/assign
+      name: assessments-assessment-id-assign
+      description: REST surface for assessments-assessment_id-assign.
+      operations:
+      - method: POST
+        name: assignassessment
+        description: Assign Assessment
+        call: portal-assessments.assignassessment
+        with:
+          assessment_id: rest.assessment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/assessments/{assessment-id}/attempts
+      name: assessments-assessment-id-attempts
+      description: REST surface for assessments-assessment_id-attempts.
+      operations:
+      - method: GET
+        name: listassessmentattempts
+        description: List Assessment Attempts
+        call: portal-assessments.listassessmentattempts
+        with:
+          assessment_id: rest.assessment_id
+          page: rest.page
+          developer: rest.developer
+          startdate: rest.startdate
+          enddate: rest.enddate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: portal-assessments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Secure Code Warrior Portal API — Assessments. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-assessments
+      description: List Assessments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portal-assessments.listassessments
+      with:
+        page: tools.page
+        startdate: tools.startdate
+        enddate: tools.enddate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: assign-assessment
+      description: Assign Assessment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: portal-assessments.assignassessment
+      with:
+        assessment_id: tools.assessment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-assessment-attempts
+      description: List Assessment Attempts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portal-assessments.listassessmentattempts
+      with:
+        assessment_id: tools.assessment_id
+        page: tools.page
+        developer: tools.developer
+        startdate: tools.startdate
+        enddate: tools.enddate
+      outputParameters:
+      - type: object
+        mapping: $.

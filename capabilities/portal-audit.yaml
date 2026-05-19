@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Secure Code Warrior Portal API — Audit
+  description: 'Secure Code Warrior Portal API — Audit. 1 operations. Lead operation: Get Audit Log. Self-contained Naftiko
+    capability covering one Secure Code Warrior business surface.'
+  tags:
+  - Secure Code Warrior
+  - Audit
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SECURE_CODE_WARRIOR_API_KEY: SECURE_CODE_WARRIOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: portal-audit
+    baseUri: https://portal-api.securecodewarrior.com/api/v2
+    description: Secure Code Warrior Portal API — Audit business capability. Self-contained, no shared references.
+    resources:
+    - name: audit-log
+      path: /audit-log
+      operations:
+      - name: getauditlog
+        method: GET
+        description: Get Audit Log
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: from_date
+          in: query
+          type: string
+          required: true
+        - name: to_date
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SECURE_CODE_WARRIOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: portal-audit-rest
+    port: 8080
+    description: REST adapter for Secure Code Warrior Portal API — Audit. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/audit-log
+      name: audit-log
+      description: REST surface for audit-log.
+      operations:
+      - method: GET
+        name: getauditlog
+        description: Get Audit Log
+        call: portal-audit.getauditlog
+        with:
+          from_date: rest.from_date
+          to_date: rest.to_date
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: portal-audit-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Secure Code Warrior Portal API — Audit. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-audit-log
+      description: Get Audit Log
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portal-audit.getauditlog
+      with:
+        from_date: tools.from_date
+        to_date: tools.to_date
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.

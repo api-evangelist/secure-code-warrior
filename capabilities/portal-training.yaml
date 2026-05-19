@@ -1,0 +1,266 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Secure Code Warrior Portal API — Training
+  description: 'Secure Code Warrior Portal API — Training. 5 operations. Lead operation: Get Developer Leaderboard. Self-contained
+    Naftiko capability covering one Secure Code Warrior business surface.'
+  tags:
+  - Secure Code Warrior
+  - Training
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SECURE_CODE_WARRIOR_API_KEY: SECURE_CODE_WARRIOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: portal-training
+    baseUri: https://portal-api.securecodewarrior.com/api/v2
+    description: Secure Code Warrior Portal API — Training business capability. Self-contained, no shared references.
+    resources:
+    - name: training-developer-leaderboard
+      path: /training/developer-leaderboard
+      operations:
+      - name: getdeveloperleaderboard
+        method: GET
+        description: Get Developer Leaderboard
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_period
+          in: query
+          type: integer
+          description: Report period in days (1, 7, or 30)
+        - name: page
+          in: query
+          type: integer
+        - name: startdate
+          in: query
+          type: string
+          description: Start date filter (ISO 8601)
+        - name: enddate
+          in: query
+          type: string
+          description: End date filter (ISO 8601)
+    - name: training-developer-leaderboard-search
+      path: /training/developer-leaderboard/search
+      operations:
+      - name: searchdeveloperleaderboard
+        method: POST
+        description: Search Developer Leaderboard
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: training-developers-activity
+      path: /training/developers-activity
+      operations:
+      - name: getdevelopersactivity
+        method: GET
+        description: Get Developers Activity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+    - name: training-developers-progress
+      path: /training/developers-progress
+      operations:
+      - name: getdevelopersprogress
+        method: GET
+        description: Get Developers Progress
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+    - name: training-team-leaderboard
+      path: /training/team-leaderboard
+      operations:
+      - name: getteamleaderboard
+        method: GET
+        description: Get Team Leaderboard
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: omitInactive
+          in: query
+          type: boolean
+          description: Exclude inactive teams from results
+        - name: page
+          in: query
+          type: integer
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SECURE_CODE_WARRIOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: portal-training-rest
+    port: 8080
+    description: REST adapter for Secure Code Warrior Portal API — Training. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/training/developer-leaderboard
+      name: training-developer-leaderboard
+      description: REST surface for training-developer-leaderboard.
+      operations:
+      - method: GET
+        name: getdeveloperleaderboard
+        description: Get Developer Leaderboard
+        call: portal-training.getdeveloperleaderboard
+        with:
+          report_period: rest.report_period
+          page: rest.page
+          startdate: rest.startdate
+          enddate: rest.enddate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/training/developer-leaderboard/search
+      name: training-developer-leaderboard-search
+      description: REST surface for training-developer-leaderboard-search.
+      operations:
+      - method: POST
+        name: searchdeveloperleaderboard
+        description: Search Developer Leaderboard
+        call: portal-training.searchdeveloperleaderboard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/training/developers-activity
+      name: training-developers-activity
+      description: REST surface for training-developers-activity.
+      operations:
+      - method: GET
+        name: getdevelopersactivity
+        description: Get Developers Activity
+        call: portal-training.getdevelopersactivity
+        with:
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/training/developers-progress
+      name: training-developers-progress
+      description: REST surface for training-developers-progress.
+      operations:
+      - method: GET
+        name: getdevelopersprogress
+        description: Get Developers Progress
+        call: portal-training.getdevelopersprogress
+        with:
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/training/team-leaderboard
+      name: training-team-leaderboard
+      description: REST surface for training-team-leaderboard.
+      operations:
+      - method: GET
+        name: getteamleaderboard
+        description: Get Team Leaderboard
+        call: portal-training.getteamleaderboard
+        with:
+          omitInactive: rest.omitInactive
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: portal-training-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Secure Code Warrior Portal API — Training. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-developer-leaderboard
+      description: Get Developer Leaderboard
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portal-training.getdeveloperleaderboard
+      with:
+        report_period: tools.report_period
+        page: tools.page
+        startdate: tools.startdate
+        enddate: tools.enddate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-developer-leaderboard
+      description: Search Developer Leaderboard
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: portal-training.searchdeveloperleaderboard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-developers-activity
+      description: Get Developers Activity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portal-training.getdevelopersactivity
+      with:
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-developers-progress
+      description: Get Developers Progress
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portal-training.getdevelopersprogress
+      with:
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-team-leaderboard
+      description: Get Team Leaderboard
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portal-training.getteamleaderboard
+      with:
+        omitInactive: tools.omitInactive
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
