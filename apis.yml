@@ -176,3 +176,5 @@ common:
   type: Vocabulary
 - type: Integrations
   url: https://www.securecodewarrior.com/product/integrations
+- type: LLMsTxt
+  url: https://www.securecodewarrior.com/llms.txt
