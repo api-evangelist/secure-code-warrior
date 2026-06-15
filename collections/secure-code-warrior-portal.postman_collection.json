@@ -1,0 +1,3741 @@
+{
+  "item": [
+    {
+      "id": "f96e1d21-2699-4007-a537-5d6bc78c831e",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "883f1cb7-fe7f-48f1-89e8-a3a0dc4e7c55",
+          "name": "List Users",
+          "request": {
+            "name": "List Users",
+            "description": {
+              "content": "Retrieve all user records within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d6e91c8-27a9-4e13-a4e5-035de9742653",
+              "name": "List of users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"role\": \"string\",\n      \"teams\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"2013-11-20T19:26:40.652Z\",\n      \"lastActiveAt\": \"1982-05-25T17:56:49.695Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"role\": \"string\",\n      \"teams\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1978-03-03T16:18:15.616Z\",\n      \"lastActiveAt\": \"1989-10-29T15:30:46.854Z\"\n    }\n  ],\n  \"total\": 6182,\n  \"page\": 1272\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53bba8cf-e28c-45c7-a2e2-f32b6cb5b488",
+              "name": "Unauthorized - Admin API key required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd92200c-8dc4-46bf-96d3-feed7d651ba2",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {
+              "content": "Create a new user account within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sendInvite",
+                  "value": "true",
+                  "description": "Send invitation email to new user"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6885b791-ae62-49b1-9ba5-8a6020c41e91",
+              "name": "User created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendInvite",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"role\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1969-10-11T16:01:48.516Z\",\n  \"lastActiveAt\": \"2006-10-22T06:43:44.601Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8630093e-a485-438c-9897-1ebf02273f2c",
+              "name": "Invalid user data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendInvite",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a346cd3a-0bda-4012-b039-73b53881bb44",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendInvite",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe657d27-f763-46f1-8bcb-47e082a67e30",
+          "name": "Search Users",
+          "request": {
+            "name": "Search Users",
+            "description": {
+              "content": "Search users with filtering criteria including email, team, and tags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"team\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f215a24e-bbf2-4566-80e5-7f0e2995fa4b",
+              "name": "Matching users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"team\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"role\": \"string\",\n      \"teams\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1958-07-15T13:15:03.789Z\",\n      \"lastActiveAt\": \"1953-07-07T21:54:18.764Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"role\": \"string\",\n      \"teams\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"2007-03-22T22:42:22.811Z\",\n      \"lastActiveAt\": \"2015-07-10T21:05:54.340Z\"\n    }\n  ],\n  \"total\": 6813,\n  \"page\": 6133\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be2d17a6-5622-4b86-8387-6743f200aee6",
+          "name": "Get User",
+          "request": {
+            "name": "Get User",
+            "description": {
+              "content": "Retrieve a single user by ID or email address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idtype",
+                  "value": "id",
+                  "description": "Type of identifier (id or email)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a625cebb-1888-4873-a105-df3b06097f27",
+              "name": "User details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idtype",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"role\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1969-10-11T16:01:48.516Z\",\n  \"lastActiveAt\": \"2006-10-22T06:43:44.601Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edf541b1-ccab-449b-98a0-3486906cdec3",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idtype",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "845f9c52-ab9b-4a70-89fc-f1a24b6116f3",
+          "name": "Delete User",
+          "request": {
+            "name": "Delete User",
+            "description": {
+              "content": "Remove a user from the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idtype",
+                  "value": "id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75764db2-732a-46a8-9e6d-d1830cdb618b",
+              "name": "User deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idtype",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cdda1ea-1972-4fba-a66b-d159dad422a0",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idtype",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb86c129-ff94-43ce-89d2-ed2d3e9dbc24",
+          "name": "Update User",
+          "request": {
+            "name": "Update User",
+            "description": {
+              "content": "Update user details and attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idtype",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipNotifyIfSso",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sendInvite",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4c598e8-1731-482b-b1f9-d5fb41916743",
+              "name": "User updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skipNotifyIfSso",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sendInvite",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"role\": \"string\",\n  \"teams\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1969-10-11T16:01:48.516Z\",\n  \"lastActiveAt\": \"2006-10-22T06:43:44.601Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f2c2421-ca8a-47f8-bab9-cc41026a2075",
+          "name": "List User Roles",
+          "request": {
+            "name": "List User Roles",
+            "description": {
+              "content": "Get available role options for the company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95a00443-97a2-49e8-b309-91438a1feab8",
+              "name": "Available roles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9296a223-5c71-49b1-b606-9b658e7848f0",
+      "name": "Teams",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc8f667f-1e98-43e2-847c-171c574adf15",
+          "name": "List Teams",
+          "request": {
+            "name": "List Teams",
+            "description": {
+              "content": "Returns a list of Team objects within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by team name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "401c9b07-e195-4695-bc36-4fc617fe8ace",
+              "name": "List of teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"teams\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"memberCount\": 566,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1997-11-19T21:29:30.884Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"memberCount\": 785,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1947-07-30T10:27:53.638Z\"\n    }\n  ],\n  \"total\": 6591,\n  \"page\": 7791\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7830018-c1c2-496d-9afa-cc0e794091ec",
+          "name": "Create Team",
+          "request": {
+            "name": "Create Team",
+            "description": {
+              "content": "Create a new team within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eaf65ffe-f0c0-403a-9108-f4860f445e56",
+              "name": "Team created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"memberCount\": 6416,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2000-11-28T13:18:36.231Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "316529c0-48cb-48ba-a6fd-f323cda9b6f4",
+          "name": "Get Team",
+          "request": {
+            "name": "Get Team",
+            "description": {
+              "content": "Retrieve team details and configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team",
+                ":team_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9644961c-0715-46a9-bfbc-f3bd29ad5e3d",
+              "name": "Team details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    ":team_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"memberCount\": 6416,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2000-11-28T13:18:36.231Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58a78c0e-a2f1-4598-9616-8debf0992f4a",
+          "name": "Delete Team",
+          "request": {
+            "name": "Delete Team",
+            "description": {
+              "content": "Remove a team from the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team",
+                ":team_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21d21f35-66a9-46bd-b526-9d7d275d20fc",
+              "name": "Team deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    ":team_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4155fb8-022b-4d4c-bb95-45745daf82d1",
+          "name": "Update Team",
+          "request": {
+            "name": "Update Team",
+            "description": {
+              "content": "Update team properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team",
+                ":team_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6fd6bef5-703a-4976-b152-ca43909edba8",
+              "name": "Team updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    ":team_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"memberCount\": 6416,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2000-11-28T13:18:36.231Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8fb6411f-015a-4b25-87d9-07e962adc23c",
+      "name": "Training",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ff6d8a2-700d-4b84-8491-751b90416c1f",
+          "name": "Get Developer Leaderboard",
+          "request": {
+            "name": "Get Developer Leaderboard",
+            "description": {
+              "content": "Returns a list of all developers within the organisation, with their current stats as well as the change in stats over the report period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developer-leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "report_period",
+                  "value": "30",
+                  "description": "Report period in days (1, 7, or 30)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "Start date filter (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "End date filter (ISO 8601)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f4730d9-e5c4-4f42-9237-c2cdd090b549",
+              "name": "Developer leaderboard data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developer-leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "report_period",
+                      "value": "30"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 174,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1962-09-01T23:05:24.727Z\",\n        \"lastActiveAt\": \"1968-03-05T00:57:52.428Z\"\n      },\n      \"points\": 6286,\n      \"completions\": 281,\n      \"change\": 6182\n    },\n    {\n      \"rank\": 375,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1972-11-13T02:01:33.596Z\",\n        \"lastActiveAt\": \"1967-08-27T17:44:12.409Z\"\n      },\n      \"points\": 3099,\n      \"completions\": 1064,\n      \"change\": 1070\n    }\n  ],\n  \"total\": 3576,\n  \"page\": 4747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d785bb9-426d-4534-84a2-65f4cc709346",
+          "name": "Search Developer Leaderboard",
+          "request": {
+            "name": "Search Developer Leaderboard",
+            "description": {
+              "content": "Search leaderboard with email, tag, and team filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developer-leaderboard",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee058862-2c45-499b-969d-703b404b590e",
+              "name": "Filtered leaderboard data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developer-leaderboard",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 174,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1962-09-01T23:05:24.727Z\",\n        \"lastActiveAt\": \"1968-03-05T00:57:52.428Z\"\n      },\n      \"points\": 6286,\n      \"completions\": 281,\n      \"change\": 6182\n    },\n    {\n      \"rank\": 375,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1972-11-13T02:01:33.596Z\",\n        \"lastActiveAt\": \"1967-08-27T17:44:12.409Z\"\n      },\n      \"points\": 3099,\n      \"completions\": 1064,\n      \"change\": 1070\n    }\n  ],\n  \"total\": 3576,\n  \"page\": 4747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7edd6984-d309-41ac-9387-69db3c9fb4a2",
+          "name": "Get Developers Progress",
+          "request": {
+            "name": "Get Developers Progress",
+            "description": {
+              "content": "Retrieve training progress with realm, level, and quest data for all developers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developers-progress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24d94228-36f2-4884-ab62-ab3f259dce73",
+              "name": "Developer training progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developers-progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"developers\": [\n    {\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2009-04-01T10:23:06.911Z\",\n        \"lastActiveAt\": \"1987-09-05T02:45:14.933Z\"\n      },\n      \"realm\": \"string\",\n      \"level\": 9433,\n      \"quests_completed\": 1549\n    },\n    {\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2001-03-13T21:25:01.853Z\",\n        \"lastActiveAt\": \"1980-06-07T18:57:58.090Z\"\n      },\n      \"realm\": \"string\",\n      \"level\": 2842,\n      \"quests_completed\": 6795\n    }\n  ],\n  \"total\": 1935,\n  \"page\": 5780\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49083915-6177-4d6c-a818-3d7a9d5b3073",
+          "name": "Get Developers Activity",
+          "request": {
+            "name": "Get Developers Activity",
+            "description": {
+              "content": "Returns the detailed challenge log of all developers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developers-activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1114169c-39d6-4749-a25d-82271c406094",
+              "name": "Developer activity log",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developers-activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activities\": [\n    {\n      \"userId\": \"string\",\n      \"email\": \"string\",\n      \"challenge\": \"string\",\n      \"language\": \"string\",\n      \"framework\": \"string\",\n      \"result\": \"fail\",\n      \"timestamp\": \"2006-01-06T03:17:32.916Z\"\n    },\n    {\n      \"userId\": \"string\",\n      \"email\": \"string\",\n      \"challenge\": \"string\",\n      \"language\": \"string\",\n      \"framework\": \"string\",\n      \"result\": \"fail\",\n      \"timestamp\": \"2023-09-04T06:48:17.246Z\"\n    }\n  ],\n  \"total\": 2293,\n  \"page\": 2256\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb2234c5-f718-4a7a-8dc6-77c990a3553a",
+          "name": "Get Team Leaderboard",
+          "request": {
+            "name": "Get Team Leaderboard",
+            "description": {
+              "content": "Fetch team statistics and rankings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "team-leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "omitInactive",
+                  "value": "false",
+                  "description": "Exclude inactive teams from results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da66eb77-39c4-47f6-afc3-d831dd7ec283",
+              "name": "Team leaderboard data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "team-leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "omitInactive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 3935,\n      \"team\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"memberCount\": 3822,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2000-02-22T17:25:41.092Z\"\n      },\n      \"points\": 806,\n      \"completions\": 6009\n    },\n    {\n      \"rank\": 8047,\n      \"team\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"memberCount\": 6957,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1956-11-14T08:36:21.240Z\"\n      },\n      \"points\": 1563,\n      \"completions\": 8866\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f47f6a4b-8b67-4f38-9e1d-7eaa3cfc249f",
+      "name": "Assessments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c241ad7-cd8d-42ea-945f-e23d0bbc8b6e",
+          "name": "List Assessments",
+          "request": {
+            "name": "List Assessments",
+            "description": {
+              "content": "Returns a list of Assessment objects within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24677cc6-4d16-429e-b791-3ce50ea54f23",
+              "name": "List of assessments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"draft\",\n      \"language\": \"string\",\n      \"difficulty\": \"beginner\",\n      \"createdAt\": \"1953-04-07T02:17:41.121Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"active\",\n      \"language\": \"string\",\n      \"difficulty\": \"beginner\",\n      \"createdAt\": \"2017-07-20T15:20:44.626Z\"\n    }\n  ],\n  \"total\": 3470,\n  \"page\": 9428\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58b35917-48a1-4cf5-bc1a-dacde4fa84c3",
+          "name": "List Assessment Attempts",
+          "request": {
+            "name": "List Assessment Attempts",
+            "description": {
+              "content": "Get detailed assessment attempt reports for a specific assessment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessment_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "developer",
+                  "value": "<string>",
+                  "description": "Filter by developer email"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8bcdb49a-99a8-4adf-b4fa-bbe657af5d9c",
+              "name": "Assessment attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessment_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "developer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attempts\": [\n    {\n      \"id\": \"string\",\n      \"developer\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1957-07-31T02:01:23.194Z\",\n        \"lastActiveAt\": \"2021-10-11T04:43:37.632Z\"\n      },\n      \"score\": 979.350863455376,\n      \"completed\": true,\n      \"startedAt\": \"2008-06-05T07:56:18.434Z\",\n      \"completedAt\": \"1998-05-02T06:04:48.577Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"developer\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1985-08-24T14:26:52.011Z\",\n        \"lastActiveAt\": \"2009-08-03T21:49:16.123Z\"\n      },\n      \"score\": 2027.5226570863535,\n      \"completed\": false,\n      \"startedAt\": \"2004-09-21T13:56:00.616Z\",\n      \"completedAt\": \"2015-03-27T11:32:01.933Z\"\n    }\n  ],\n  \"total\": 6544,\n  \"page\": 214\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddaa6f9d-9589-41da-a8b8-c69f957e3da4",
+          "name": "Assign Assessment",
+          "request": {
+            "name": "Assign Assessment",
+            "description": {
+              "content": "Assign an assessment to users or teams.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessment_id",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sendEmail\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b58da373-4546-401d-b05d-06f99087fb8f",
+              "name": "Assessment assigned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessment_id",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sendEmail\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "afaecacb-c412-481f-a6e3-fbe62ccfc5f7",
+      "name": "Tournaments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a1c6032-d3db-4148-8973-ecb350a6b9a2",
+          "name": "List Tournaments",
+          "request": {
+            "name": "List Tournaments",
+            "description": {
+              "content": "Returns a list of tournaments in the company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tournaments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2e705ea-68d6-4a5d-bd1d-f2c0ae9923da",
+              "name": "List of tournaments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tournaments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tournaments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"startDate\": \"1993-03-05T18:03:15.862Z\",\n      \"endDate\": \"2024-02-18T05:12:30.983Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"startDate\": \"1988-08-02T05:42:32.355Z\",\n      \"endDate\": \"2003-05-01T00:19:48.362Z\"\n    }\n  ],\n  \"total\": 3521,\n  \"page\": 8609\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "578e6a52-3695-462e-a042-ed956382d671",
+          "name": "Get Tournament Leaderboard",
+          "request": {
+            "name": "Get Tournament Leaderboard",
+            "description": {
+              "content": "Returns the leaderboard for a single tournament.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tournaments",
+                ":tournament_id",
+                "leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tournament_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02be6e71-6cf7-4074-b633-01d60297e089",
+              "name": "Tournament leaderboard",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tournaments",
+                    ":tournament_id",
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tournament_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 4170,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1998-08-22T19:28:12.285Z\",\n        \"lastActiveAt\": \"1990-02-16T13:29:37.436Z\"\n      },\n      \"points\": 7294,\n      \"completions\": 5741,\n      \"change\": 6000\n    },\n    {\n      \"rank\": 7864,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1972-01-01T14:26:14.584Z\",\n        \"lastActiveAt\": \"2001-04-22T23:45:41.328Z\"\n      },\n      \"points\": 2302,\n      \"completions\": 3443,\n      \"change\": 2021\n    }\n  ],\n  \"total\": 2588,\n  \"page\": 3097\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8e25f293-8e61-4af2-b7c3-39cca037def7",
+      "name": "Courses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f08b66b-73de-4969-90f9-39a062327502",
+          "name": "List Courses",
+          "request": {
+            "name": "List Courses",
+            "description": {
+              "content": "Returns a list of Course objects available in the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "courses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeBadges",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b45ddf1f-185c-4a60-90b2-8791aaef454d",
+              "name": "List of courses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "includeBadges",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"courses\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"language\": \"string\",\n      \"difficulty\": \"string\",\n      \"badges\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"language\": \"string\",\n      \"difficulty\": \"string\",\n      \"badges\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"total\": 5156,\n  \"page\": 9758\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4dbe670b-545b-469c-bb6b-431a7f39c015",
+          "name": "Assign Course",
+          "request": {
+            "name": "Assign Course",
+            "description": {
+              "content": "Assign a course to users or teams.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "courses",
+                ":course_id",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "course_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bde9821c-5d79-464c-b3bb-c46424ec7b92",
+              "name": "Course assigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses",
+                    ":course_id",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "course_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5e3a32ec-9e46-4d92-992d-d172f412c747",
+      "name": "Programs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d594fe9d-4d1d-4070-94a2-2f5c9acf20de",
+          "name": "List Programs",
+          "request": {
+            "name": "List Programs",
+            "description": {
+              "content": "Returns a list of Programs belonging to the company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43978b45-5239-47ff-88c8-cd4b8e5dd4e7",
+              "name": "List of programs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "programs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"programs\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"courses\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"courses\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"total\": 835,\n  \"page\": 3739\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4cb435a0-cba9-4ca9-aa5f-458e65ed1950",
+      "name": "Learning",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2612abfd-0323-4d6c-a2b7-ad24f4d96749",
+          "name": "List Learning Resources",
+          "request": {
+            "name": "List Learning Resources",
+            "description": {
+              "content": "Return the list of available learning resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "learning",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57a5523e-2f48-4fd4-af92-cf4564c6782d",
+              "name": "Available learning resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "learning",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resources\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"video\",\n      \"url\": \"string\",\n      \"language\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"video\",\n      \"url\": \"string\",\n      \"language\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bdd2889-ac38-47ad-abdc-668c8f598b47",
+          "name": "Get Learning Progress",
+          "request": {
+            "name": "Get Learning Progress",
+            "description": {
+              "content": "Shows learning resources which have been completed, read or watched.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "learning",
+                "progress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a580ba3-f45c-4ee0-aba9-3d0da40d8914",
+              "name": "Learning progress data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "learning",
+                    "progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"progress\": [\n    {\n      \"userId\": \"string\",\n      \"resource\": \"string\",\n      \"completedAt\": \"1959-11-10T12:29:04.643Z\"\n    },\n    {\n      \"userId\": \"string\",\n      \"resource\": \"string\",\n      \"completedAt\": \"1963-11-12T23:00:53.871Z\"\n    }\n  ],\n  \"total\": 8898,\n  \"page\": 7659\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7ab66956-63d7-4404-b09a-cdf60350dd83",
+      "name": "Metrics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60859694-8d47-4cec-9e6d-9804e3d0230b",
+          "name": "Get Time Spent",
+          "request": {
+            "name": "Get Time Spent",
+            "description": {
+              "content": "Time spent on the platform across Assessments, Courses, Learning, Tournaments and Training by user or team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "time-spent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "team",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a302600-d4bc-4212-b20e-19e5701e795b",
+              "name": "Time spent metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "time-spent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "team",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"userId\": \"string\",\n      \"email\": \"string\",\n      \"training_minutes\": 2588,\n      \"assessment_minutes\": 4103,\n      \"course_minutes\": 1258,\n      \"tournament_minutes\": 9773,\n      \"learning_minutes\": 4334,\n      \"total_minutes\": 8888\n    },\n    {\n      \"userId\": \"string\",\n      \"email\": \"string\",\n      \"training_minutes\": 9,\n      \"assessment_minutes\": 9490,\n      \"course_minutes\": 6396,\n      \"tournament_minutes\": 817,\n      \"learning_minutes\": 4085,\n      \"total_minutes\": 2878\n    }\n  ],\n  \"total\": 4402,\n  \"page\": 2860\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cf697d2-4ee2-46c6-bfa4-8a3198241878",
+          "name": "Get Most Engaged Teams",
+          "request": {
+            "name": "Get Most Engaged Teams",
+            "description": {
+              "content": "Identify the top engaged teams over a report period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "activity",
+                "teams",
+                "most-engaged"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "report_period",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "number_of_teams",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20969d1f-f422-4b8b-9762-8a6d17d12948",
+              "name": "Most engaged teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "activity",
+                    "teams",
+                    "most-engaged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "report_period",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "number_of_teams",
+                      "value": "10"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"teams\": [\n    {\n      \"team\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"memberCount\": 6820,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2023-10-07T14:26:05.554Z\"\n      },\n      \"engagement_score\": 3075.7281442177296\n    },\n    {\n      \"team\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"memberCount\": 9592,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1984-11-14T09:07:22.362Z\"\n      },\n      \"engagement_score\": 2567.964953889592\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f5d9e6e-df33-4f20-9b88-43308e71320d",
+          "name": "Get Most Engaged Users",
+          "request": {
+            "name": "Get Most Engaged Users",
+            "description": {
+              "content": "Identify the top engaged users over a report period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "activity",
+                "users",
+                "most-engaged"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "report_period",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "number_of_users",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "team_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a07fa23b-a306-44e7-8957-48e2c16bc91a",
+              "name": "Most engaged users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "activity",
+                    "users",
+                    "most-engaged"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "report_period",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "number_of_users",
+                      "value": "10"
+                    },
+                    {
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1956-08-02T09:33:32.982Z\",\n        \"lastActiveAt\": \"2006-02-25T00:43:57.535Z\"\n      },\n      \"engagement_score\": 5517.1331558998845\n    },\n    {\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2014-09-28T13:16:33.476Z\",\n        \"lastActiveAt\": \"1965-04-05T12:11:21.571Z\"\n      },\n      \"engagement_score\": 6344.104999825002\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "164d7ca2-e1f8-474f-800b-838692336a74",
+      "name": "Audit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e805ce4d-c096-4a12-982f-79b722b52565",
+          "name": "Get Audit Log",
+          "request": {
+            "name": "Get Audit Log",
+            "description": {
+              "content": "Retrieve system audit logs with timestamp filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit-log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54f61b96-7264-49fe-b591-b2186b649b4a",
+              "name": "Audit log entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit-log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"id\": \"string\",\n      \"action\": \"string\",\n      \"actor\": \"string\",\n      \"target\": \"string\",\n      \"timestamp\": \"2001-08-18T15:53:00.068Z\",\n      \"details\": {}\n    },\n    {\n      \"id\": \"string\",\n      \"action\": \"string\",\n      \"actor\": \"string\",\n      \"target\": \"string\",\n      \"timestamp\": \"1951-10-20T11:32:05.568Z\",\n      \"details\": {}\n    }\n  ],\n  \"total\": 6750,\n  \"page\": 6300\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://portal-api.securecodewarrior.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "be44a6eb-ec08-4262-9746-2a7849f4fba1",
+    "name": "Secure Code Warrior Portal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.",
+      "type": "text/plain"
+    }
+  }
+}

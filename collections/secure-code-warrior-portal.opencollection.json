@@ -1,0 +1,864 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secure Code Warrior Portal API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/users",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in response"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all user records within the organization."
+        },
+        {
+          "info": {
+            "name": "Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/users",
+            "params": [
+              {
+                "name": "sendInvite",
+                "value": "",
+                "type": "query",
+                "description": "Send invitation email to new user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user account within the organization."
+        },
+        {
+          "info": {
+            "name": "Search Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/users/search",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search users with filtering criteria including email, team, and tags."
+        },
+        {
+          "info": {
+            "name": "Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "idtype",
+                "value": "",
+                "type": "query",
+                "description": "Type of identifier (id or email)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a single user by ID or email address."
+        },
+        {
+          "info": {
+            "name": "Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "idtype",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skipNotifyIfSso",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sendInvite",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user details and attributes."
+        },
+        {
+          "info": {
+            "name": "Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "idtype",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Remove a user from the organization."
+        },
+        {
+          "info": {
+            "name": "List User Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/users/roles"
+          },
+          "docs": "Get available role options for the company."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/teams",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team name"
+              }
+            ]
+          },
+          "docs": "Returns a list of Team objects within the organization."
+        },
+        {
+          "info": {
+            "name": "Create Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/team",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new team within the organization."
+        },
+        {
+          "info": {
+            "name": "Get Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/team/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve team details and configuration."
+        },
+        {
+          "info": {
+            "name": "Update Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/team/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update team properties."
+        },
+        {
+          "info": {
+            "name": "Delete Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/team/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a team from the organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Training",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Developer Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developer-leaderboard",
+            "params": [
+              {
+                "name": "report_period",
+                "value": "",
+                "type": "query",
+                "description": "Report period in days (1, 7, or 30)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter (ISO 8601)"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query",
+                "description": "End date filter (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Returns a list of all developers within the organisation, with their current stats as well as the change in stats over the report period."
+        },
+        {
+          "info": {
+            "name": "Search Developer Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developer-leaderboard/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search leaderboard with email, tag, and team filters."
+        },
+        {
+          "info": {
+            "name": "Get Developers Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developers-progress",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve training progress with realm, level, and quest data for all developers."
+        },
+        {
+          "info": {
+            "name": "Get Developers Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developers-activity",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the detailed challenge log of all developers."
+        },
+        {
+          "info": {
+            "name": "Get Team Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/team-leaderboard",
+            "params": [
+              {
+                "name": "omitInactive",
+                "value": "",
+                "type": "query",
+                "description": "Exclude inactive teams from results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch team statistics and rankings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assessments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assessments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/assessments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of Assessment objects within the organization."
+        },
+        {
+          "info": {
+            "name": "List Assessment Attempts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/assessments/:assessment_id/attempts",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "developer",
+                "value": "",
+                "type": "query",
+                "description": "Filter by developer email"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get detailed assessment attempt reports for a specific assessment."
+        },
+        {
+          "info": {
+            "name": "Assign Assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/assessments/:assessment_id/assign",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign an assessment to users or teams."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tournaments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tournaments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/tournaments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of tournaments in the company."
+        },
+        {
+          "info": {
+            "name": "Get Tournament Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/tournaments/:tournament_id/leaderboard",
+            "params": [
+              {
+                "name": "tournament_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the leaderboard for a single tournament."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Courses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Courses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/courses",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeBadges",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of Course objects available in the organization."
+        },
+        {
+          "info": {
+            "name": "Assign Course",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/courses/:course_id/assign",
+            "params": [
+              {
+                "name": "course_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign a course to users or teams."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Programs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/programs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of Programs belonging to the company."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Learning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Learning Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/learning/resources"
+          },
+          "docs": "Return the list of available learning resources."
+        },
+        {
+          "info": {
+            "name": "Get Learning Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/learning/progress",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Shows learning resources which have been completed, read or watched."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Time Spent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/metrics/time-spent",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "team",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Time spent on the platform across Assessments, Courses, Learning, Tournaments and Training by user or team."
+        },
+        {
+          "info": {
+            "name": "Get Most Engaged Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/metrics/activity/teams/most-engaged",
+            "params": [
+              {
+                "name": "report_period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_of_teams",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Identify the top engaged teams over a report period."
+        },
+        {
+          "info": {
+            "name": "Get Most Engaged Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/metrics/activity/users/most-engaged",
+            "params": [
+              {
+                "name": "report_period",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_of_users",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "team_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Identify the top engaged users over a report period."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Audit Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/audit-log",
+            "params": [
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve system audit logs with timestamp filtering."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
