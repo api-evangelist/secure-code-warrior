@@ -154,12 +154,12 @@ common:
   - url: json-ld/secure-code-warrior-context.jsonld
     type: JSONLDContext
   - url: examples/secure-code-warrior-get-leaderboard-example.json
-    type: Example
+    type: Examples
   - url: rules/secure-code-warrior-rules.yml
     type: SpectralRuleset
   - url: vocabulary/secure-code-warrior-vocabulary.yml
     type: Vocabulary
   - type: Integrations
     url: https://www.securecodewarrior.com/product/integrations
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://www.securecodewarrior.com/llms.txt
