@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/secure-code-warrior-portal-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: Report API key, Admin API key, or Team API Key
+  sources:
+  - openapi/secure-code-warrior-portal-openapi.yml

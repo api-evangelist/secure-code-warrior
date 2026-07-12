@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.securecodewarrior.com/trust
+url: https://www.securecodewarrior.com/trust
+certifications:
+- SOC 2
+evidence:
+- source: https://www.securecodewarrior.com/trust
+  keywords:
+  - soc 2
+  - trust center

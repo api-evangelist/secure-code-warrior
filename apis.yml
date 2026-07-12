@@ -126,6 +126,12 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: TrustCenter
+    url: security/secure-code-warrior-trust-center.yml
+  - type: DomainSecurity
+    url: security/secure-code-warrior-domain-security.yml
+  - type: Authentication
+    url: authentication/secure-code-warrior-authentication.yml
   - name: Website
     url: https://www.securecodewarrior.com
     type: Website
@@ -163,3 +169,5 @@ common:
     url: https://www.securecodewarrior.com/product/integrations
   - type: LlmsText
     url: https://www.securecodewarrior.com/llms.txt
+  - url: https://www.securecodewarrior.com/blog
+    type: Blog
