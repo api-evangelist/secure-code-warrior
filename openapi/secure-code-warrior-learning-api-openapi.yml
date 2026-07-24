@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Learning API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Learning
+paths:
+  /learning/resources:
+    get:
+      operationId: listLearningResources
+      summary: List Learning Resources
+      description: Return the list of available learning resources.
+      tags:
+      - Learning
+      responses:
+        '200':
+          description: Available learning resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LearningResourcesResponse'
+  /learning/progress:
+    get:
+      operationId: getLearningProgress
+      summary: Get Learning Progress
+      description: Shows learning resources which have been completed, read or watched.
+      tags:
+      - Learning
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Learning progress data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LearningProgressResponse'
+components:
+  schemas:
+    LearningProgressResponse:
+      type: object
+      properties:
+        progress:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              resource:
+                type: string
+              completedAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    LearningResourcesResponse:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              type:
+                type: string
+                enum:
+                - video
+                - article
+                - guide
+              url:
+                type: string
+              language:
+                type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

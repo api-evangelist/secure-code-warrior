@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Courses API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Courses
+paths:
+  /courses:
+    get:
+      operationId: listCourses
+      summary: List Courses
+      description: Returns a list of Course objects available in the organization.
+      tags:
+      - Courses
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: includeBadges
+        in: query
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: List of courses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoursesResponse'
+  /courses/{course_id}/assign:
+    post:
+      operationId: assignCourse
+      summary: Assign Course
+      description: Assign a course to users or teams.
+      tags:
+      - Courses
+      parameters:
+      - name: course_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    type: string
+                teams:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Course assigned
+components:
+  schemas:
+    CoursesResponse:
+      type: object
+      properties:
+        courses:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              language:
+                type: string
+              difficulty:
+                type: string
+              badges:
+                type: array
+                items:
+                  type: string
+        total:
+          type: integer
+        page:
+          type: integer
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

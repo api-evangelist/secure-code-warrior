@@ -1,0 +1,240 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Metrics API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Metrics
+paths:
+  /metrics/time-spent:
+    get:
+      operationId: getTimeSpent
+      summary: Get Time Spent
+      description: Time spent on the platform across Assessments, Courses, Learning, Tournaments and Training by user or team.
+      tags:
+      - Metrics
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: id
+        in: query
+        schema:
+          type: string
+      - name: email
+        in: query
+        schema:
+          type: string
+      - name: tags
+        in: query
+        schema:
+          type: string
+      - name: team
+        in: query
+        schema:
+          type: string
+      - name: startdate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: enddate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Time spent metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSpentResponse'
+  /metrics/activity/teams/most-engaged:
+    get:
+      operationId: getMostEngagedTeams
+      summary: Get Most Engaged Teams
+      description: Identify the top engaged teams over a report period.
+      tags:
+      - Metrics
+      parameters:
+      - name: report_period
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 7
+          - 30
+      - name: number_of_teams
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: tags
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Most engaged teams
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  teams:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        team:
+                          $ref: '#/components/schemas/Team'
+                        engagement_score:
+                          type: number
+  /metrics/activity/users/most-engaged:
+    get:
+      operationId: getMostEngagedUsers
+      summary: Get Most Engaged Users
+      description: Identify the top engaged users over a report period.
+      tags:
+      - Metrics
+      parameters:
+      - name: report_period
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 7
+          - 30
+      - name: number_of_users
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: team_name
+        in: query
+        schema:
+          type: string
+      - name: tags
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Most engaged users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user:
+                          $ref: '#/components/schemas/User'
+                        engagement_score:
+                          type: number
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastActiveAt:
+          type: string
+          format: date-time
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        memberCount:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    TimeSpentResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              email:
+                type: string
+              training_minutes:
+                type: integer
+              assessment_minutes:
+                type: integer
+              course_minutes:
+                type: integer
+              tournament_minutes:
+                type: integer
+              learning_minutes:
+                type: integer
+              total_minutes:
+                type: integer
+        total:
+          type: integer
+        page:
+          type: integer
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

@@ -1,0 +1,218 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Assessments
+paths:
+  /assessments:
+    get:
+      operationId: listAssessments
+      summary: List Assessments
+      description: Returns a list of Assessment objects within the organization.
+      tags:
+      - Assessments
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: startdate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: enddate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: List of assessments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentsResponse'
+  /assessments/{assessment_id}/attempts:
+    get:
+      operationId: listAssessmentAttempts
+      summary: List Assessment Attempts
+      description: Get detailed assessment attempt reports for a specific assessment.
+      tags:
+      - Assessments
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: developer
+        in: query
+        description: Filter by developer email
+        schema:
+          type: string
+      - name: startdate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: enddate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Assessment attempts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptsResponse'
+  /assessments/{assessment_id}/assign:
+    post:
+      operationId: assignAssessment
+      summary: Assign Assessment
+      description: Assign an assessment to users or teams.
+      tags:
+      - Assessments
+      parameters:
+      - name: assessment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    type: string
+                  description: List of user emails to assign
+                teams:
+                  type: array
+                  items:
+                    type: string
+                  description: List of team IDs to assign
+                sendEmail:
+                  type: boolean
+                  description: Send assignment notification email
+                  default: true
+      responses:
+        '200':
+          description: Assessment assigned successfully
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastActiveAt:
+          type: string
+          format: date-time
+    AttemptsResponse:
+      type: object
+      properties:
+        attempts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              developer:
+                $ref: '#/components/schemas/User'
+              score:
+                type: number
+              completed:
+                type: boolean
+              startedAt:
+                type: string
+                format: date-time
+              completedAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    AssessmentsResponse:
+      type: object
+      properties:
+        assessments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+                enum:
+                - active
+                - inactive
+                - draft
+              language:
+                type: string
+              difficulty:
+                type: string
+                enum:
+                - beginner
+                - intermediate
+                - advanced
+              createdAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Teams API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Teams
+paths:
+  /teams:
+    get:
+      operationId: listTeams
+      summary: List Teams
+      description: Returns a list of Team objects within the organization.
+      tags:
+      - Teams
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: name
+        in: query
+        description: Filter by team name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamsResponse'
+  /team:
+    post:
+      operationId: createTeam
+      summary: Create Team
+      description: Create a new team within the organization.
+      tags:
+      - Teams
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamRequest'
+      responses:
+        '201':
+          description: Team created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+  /team/{team_id}:
+    get:
+      operationId: getTeam
+      summary: Get Team
+      description: Retrieve team details and configuration.
+      tags:
+      - Teams
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Team details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+    delete:
+      operationId: deleteTeam
+      summary: Delete Team
+      description: Remove a team from the organization.
+      tags:
+      - Teams
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Team deleted
+    patch:
+      operationId: updateTeam
+      summary: Update Team
+      description: Update team properties.
+      tags:
+      - Teams
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTeamRequest'
+      responses:
+        '200':
+          description: Team updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+components:
+  schemas:
+    CreateTeamRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    UpdateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    TeamsResponse:
+      type: object
+      properties:
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        total:
+          type: integer
+        page:
+          type: integer
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        memberCount:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

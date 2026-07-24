@@ -1,0 +1,295 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Training API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Training
+paths:
+  /training/developer-leaderboard:
+    get:
+      operationId: getDeveloperLeaderboard
+      summary: Get Developer Leaderboard
+      description: Returns a list of all developers within the organisation, with their current stats as well as the change in stats over the report period.
+      tags:
+      - Training
+      parameters:
+      - name: report_period
+        in: query
+        description: Report period in days (1, 7, or 30)
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 7
+          - 30
+          default: 30
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: startdate
+        in: query
+        description: Start date filter (ISO 8601)
+        schema:
+          type: string
+          format: date
+      - name: enddate
+        in: query
+        description: End date filter (ISO 8601)
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Developer leaderboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardResponse'
+  /training/developer-leaderboard/search:
+    post:
+      operationId: searchDeveloperLeaderboard
+      summary: Search Developer Leaderboard
+      description: Search leaderboard with email, tag, and team filters.
+      tags:
+      - Training
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                team:
+                  type: string
+      responses:
+        '200':
+          description: Filtered leaderboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardResponse'
+  /training/developers-progress:
+    get:
+      operationId: getDevelopersProgress
+      summary: Get Developers Progress
+      description: Retrieve training progress with realm, level, and quest data for all developers.
+      tags:
+      - Training
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Developer training progress
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressResponse'
+  /training/developers-activity:
+    get:
+      operationId: getDevelopersActivity
+      summary: Get Developers Activity
+      description: Returns the detailed challenge log of all developers.
+      tags:
+      - Training
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Developer activity log
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityResponse'
+  /training/team-leaderboard:
+    get:
+      operationId: getTeamLeaderboard
+      summary: Get Team Leaderboard
+      description: Fetch team statistics and rankings.
+      tags:
+      - Training
+      parameters:
+      - name: omitInactive
+        in: query
+        description: Exclude inactive teams from results
+        schema:
+          type: boolean
+          default: false
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Team leaderboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamLeaderboardResponse'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastActiveAt:
+          type: string
+          format: date-time
+    ProgressResponse:
+      type: object
+      properties:
+        developers:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/User'
+              realm:
+                type: string
+              level:
+                type: integer
+              quests_completed:
+                type: integer
+        total:
+          type: integer
+        page:
+          type: integer
+    ActivityResponse:
+      type: object
+      properties:
+        activities:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              email:
+                type: string
+              challenge:
+                type: string
+              language:
+                type: string
+              framework:
+                type: string
+              result:
+                type: string
+                enum:
+                - pass
+                - fail
+              timestamp:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        memberCount:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    LeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              user:
+                $ref: '#/components/schemas/User'
+              points:
+                type: integer
+              completions:
+                type: integer
+              change:
+                type: integer
+                description: Rank change over report period
+        total:
+          type: integer
+        page:
+          type: integer
+    TeamLeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              team:
+                $ref: '#/components/schemas/Team'
+              points:
+                type: integer
+              completions:
+                type: integer
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Audit API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Audit
+paths:
+  /audit-log:
+    get:
+      operationId: getAuditLog
+      summary: Get Audit Log
+      description: Retrieve system audit logs with timestamp filtering.
+      tags:
+      - Audit
+      parameters:
+      - name: from_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: to_date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Audit log entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogResponse'
+components:
+  schemas:
+    AuditLogResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              action:
+                type: string
+              actor:
+                type: string
+              target:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              details:
+                type: object
+        total:
+          type: integer
+        page:
+          type: integer
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

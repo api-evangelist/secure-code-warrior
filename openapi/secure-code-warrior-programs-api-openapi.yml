@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Programs API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Programs
+paths:
+  /programs:
+    get:
+      operationId: listPrograms
+      summary: List Programs
+      description: Returns a list of Programs belonging to the company.
+      tags:
+      - Programs
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: List of programs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramsResponse'
+components:
+  schemas:
+    ProgramsResponse:
+      type: object
+      properties:
+        programs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              courses:
+                type: array
+                items:
+                  type: string
+        total:
+          type: integer
+        page:
+          type: integer
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key

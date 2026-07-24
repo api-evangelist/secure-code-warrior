@@ -1,0 +1,314 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal Assessments Users API
+  description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+- url: https://portal-api.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - US
+- url: https://portal-api.eu.securecodewarrior.com/api/v2
+  description: Secure Code Warrior Portal API - EU
+security:
+- apiKey: []
+tags:
+- name: Users
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Retrieve all user records within the organization.
+      tags:
+      - Users
+      parameters:
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include in response
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+        '401':
+          description: Unauthorized - Admin API key required
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Create a new user account within the organization.
+      tags:
+      - Users
+      parameters:
+      - name: sendInvite
+        in: query
+        description: Send invitation email to new user
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid user data
+        '401':
+          description: Unauthorized
+  /users/search:
+    post:
+      operationId: searchUsers
+      summary: Search Users
+      description: Search users with filtering criteria including email, team, and tags.
+      tags:
+      - Users
+      parameters:
+      - name: fields
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                team:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Matching users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+  /users/{id}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Retrieve a single user by ID or email address.
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: idtype
+        in: query
+        description: Type of identifier (id or email)
+        schema:
+          type: string
+          enum:
+          - id
+          - email
+          default: id
+      - name: fields
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: Remove a user from the organization.
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: idtype
+        in: query
+        schema:
+          type: string
+          enum:
+          - id
+          - email
+          default: id
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+    patch:
+      operationId: updateUser
+      summary: Update User
+      description: Update user details and attributes.
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: idtype
+        in: query
+        schema:
+          type: string
+          enum:
+          - id
+          - email
+      - name: skipNotifyIfSso
+        in: query
+        schema:
+          type: boolean
+      - name: sendInvite
+        in: query
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/roles:
+    get:
+      operationId: listUserRoles
+      summary: List User Roles
+      description: Get available role options for the company.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Available roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastActiveAt:
+          type: string
+          format: date-time
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        total:
+          type: integer
+        page:
+          type: integer
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key
