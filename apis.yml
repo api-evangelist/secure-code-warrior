@@ -1,47 +1,166 @@
 aid: secure-code-warrior
 url: https://raw.githubusercontent.com/api-evangelist/secure-code-warrior/refs/heads/main/apis.yml
 apis:
-  - aid: secure-code-warrior:secure-code-warrior-portal-api
-    name: Secure Code Warrior Portal API
-    tags:
-      - Security Training
-      - Application Security
-      - Developer Training
-      - Reporting
-      - User Management
-    humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
-    baseURL: https://portal-api.securecodewarrior.com/api/v2
-    properties:
-      - url: openapi/secure-code-warrior-portal-openapi.yml
-        type: OpenAPI
-      - url: https://portal-api.securecodewarrior.com/api/docs/v2/
-        type: Documentation
-      - url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
-        type: Documentation
-    description: >-
-      The Secure Code Warrior Portal API provides programmatic access to the Secure Code Warrior developer security
-      training platform. The API enables user management, team administration, training progress reporting, assessment
-      management, tournament administration, course assignments, and audit logging. It supports multiple API key types
-      including Report, Admin, and Team keys for granular access control, with separate server instances for US and EU
-      regions.
-  - aid: secure-code-warrior:secure-code-warrior-direct-linking-api
-    name: Secure Code Warrior Direct Linking API
-    tags:
-      - Security Training
-      - Application Security
-      - CWE
-      - OWASP
-      - GitHub Integration
-    humanURL: https://help.securecodewarrior.com/hc/en-us/articles/900005309583-Direct-Linking-API-Documentation
-    properties:
-      - url: https://help.securecodewarrior.com/hc/en-us/articles/900005309583-Direct-Linking-API-Documentation
-        type: Documentation
-    description: >-
-      The Secure Code Warrior Direct Linking API is a RESTful JSON service that allows partners to retrieve application
-      security training material including links to explainer videos and training exercises in over 50 programming
-      languages and frameworks. The API maps Common Weakness Enumeration (CWE) and OWASP vulnerability references to
-      contextually relevant training content, enabling integration with GitHub, SARIF code scanning alerts, and other
-      developer workflow tools.
+- aid: secure-code-warrior:secure-code-warrior-direct-linking-api
+  name: Secure Code Warrior Direct Linking API
+  tags:
+  - Security Training
+  - Application Security
+  - CWE
+  - OWASP
+  - GitHub Integration
+  humanURL: >-
+    https://help.securecodewarrior.com/hc/en-us/articles/900005309583-Direct-Linking-API-Documentation
+  properties:
+  - url: >-
+      https://help.securecodewarrior.com/hc/en-us/articles/900005309583-Direct-Linking-API-Documentation
+    type: Documentation
+  description: >-
+    The Secure Code Warrior Direct Linking API is a RESTful JSON service that allows partners to retrieve
+    application security training material including links to explainer videos and training exercises
+    in over 50 programming languages and frameworks. The API maps Common Weakness Enumeration (CWE) and
+    OWASP vulnerability references to contextually relevant training content, enabling integration with
+    GitHub, SARIF code scanning alerts, and other developer workflow tools.
+- aid: secure-code-warrior:secure-code-warrior-assessments-api
+  name: Secure Code Warrior Assessments API
+  description: The Assessments API from Secure Code Warrior — 3 operation(s) for assessments.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Assessments
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-assessments-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-audit-api
+  name: Secure Code Warrior Audit API
+  description: The Audit API from Secure Code Warrior — 1 operation(s) for audit.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-audit-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-courses-api
+  name: Secure Code Warrior Courses API
+  description: The Courses API from Secure Code Warrior — 2 operation(s) for courses.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Courses
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-courses-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-learning-api
+  name: Secure Code Warrior Learning API
+  description: The Learning API from Secure Code Warrior — 2 operation(s) for learning.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Learning
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-learning-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-metrics-api
+  name: Secure Code Warrior Metrics API
+  description: The Metrics API from Secure Code Warrior — 3 operation(s) for metrics.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-programs-api
+  name: Secure Code Warrior Programs API
+  description: The Programs API from Secure Code Warrior — 1 operation(s) for programs.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-programs-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-teams-api
+  name: Secure Code Warrior Teams API
+  description: The Teams API from Secure Code Warrior — 3 operation(s) for teams.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-teams-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-tournaments-api
+  name: Secure Code Warrior Tournaments API
+  description: The Tournaments API from Secure Code Warrior — 2 operation(s) for tournaments.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Tournaments
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-tournaments-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-training-api
+  name: Secure Code Warrior Training API
+  description: The Training API from Secure Code Warrior — 5 operation(s) for training.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Training
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-training-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
+- aid: secure-code-warrior:secure-code-warrior-users-api
+  name: Secure Code Warrior Users API
+  description: The Users API from Secure Code Warrior — 4 operation(s) for users.
+  humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
+  baseURL: https://portal-api.securecodewarrior.com/api/v2
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/secure-code-warrior-users-api-openapi.yml
+  - type: Documentation
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+  - type: Documentation
+    url: https://help.securecodewarrior.com/hc/en-us/sections/360006026452-API
 name: Secure Code Warrior
 tags:
   - Application Security
@@ -51,7 +170,20 @@ tags:
   - Secure Coding
   - DevSecOps
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/secure-code-warrior.png
 access: 3rd-Party
 created: '2026-05-02'
 modified: '2026-05-19'
