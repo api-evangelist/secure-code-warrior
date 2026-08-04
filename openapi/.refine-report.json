@@ -1,0 +1,32 @@
+{
+  "provider": "secure-code-warrior",
+  "sources": [
+    "secure-code-warrior-assessments-api-openapi.yml",
+    "secure-code-warrior-audit-api-openapi.yml",
+    "secure-code-warrior-courses-api-openapi.yml",
+    "secure-code-warrior-learning-api-openapi.yml",
+    "secure-code-warrior-metrics-api-openapi.yml",
+    "secure-code-warrior-programs-api-openapi.yml",
+    "secure-code-warrior-teams-api-openapi.yml",
+    "secure-code-warrior-tournaments-api-openapi.yml",
+    "secure-code-warrior-training-api-openapi.yml",
+    "secure-code-warrior-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "secure-code-warrior-assessments-api-openapi.yml",
+    "secure-code-warrior-audit-api-openapi.yml",
+    "secure-code-warrior-courses-api-openapi.yml",
+    "secure-code-warrior-learning-api-openapi.yml",
+    "secure-code-warrior-metrics-api-openapi.yml",
+    "secure-code-warrior-programs-api-openapi.yml",
+    "secure-code-warrior-teams-api-openapi.yml",
+    "secure-code-warrior-tournaments-api-openapi.yml",
+    "secure-code-warrior-training-api-openapi.yml",
+    "secure-code-warrior-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

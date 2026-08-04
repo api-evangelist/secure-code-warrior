@@ -3,12 +3,9 @@
   "feeds": [
     {
       "source": "https://www.securecodewarrior.com/blog",
-      "feed_url": "https://www.securecodewarrior.com/blog/rss.xml",
-      "title": "",
-      "saved": 2,
-      "method": "discovered"
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
+  "fetched": "2026-08-01T15:49:00Z",
   "post_count": 27
 }

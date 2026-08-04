@@ -1,0 +1,1349 @@
+openapi: 3.0.3
+info:
+  title: Secure Code Warrior Portal API
+  description: >-
+    The Secure Code Warrior Portal API provides programmatic access to the developer
+    security training platform. Manage users, teams, training progress, assessments,
+    tournaments, courses, programs, metrics, and audit logs. Supports multiple API
+    key types for granular access control across US and EU regions.
+  version: 2.0.0
+  contact:
+    url: https://portal-api.securecodewarrior.com/api/docs/v2/
+servers:
+  - url: https://portal-api.securecodewarrior.com/api/v2
+    description: Secure Code Warrior Portal API - US
+  - url: https://portal-api.eu.securecodewarrior.com/api/v2
+    description: Secure Code Warrior Portal API - EU
+security:
+  - apiKey: []
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Retrieve all user records within the organization.
+      tags:
+        - Users
+      parameters:
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include in response
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+        '401':
+          description: Unauthorized - Admin API key required
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Create a new user account within the organization.
+      tags:
+        - Users
+      parameters:
+        - name: sendInvite
+          in: query
+          description: Send invitation email to new user
+          schema:
+            type: boolean
+            default: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid user data
+        '401':
+          description: Unauthorized
+  /users/search:
+    post:
+      operationId: searchUsers
+      summary: Search Users
+      description: Search users with filtering criteria including email, team, and tags.
+      tags:
+        - Users
+      parameters:
+        - name: fields
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                team:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Matching users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+  /users/{id}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Retrieve a single user by ID or email address.
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: idtype
+          in: query
+          description: Type of identifier (id or email)
+          schema:
+            type: string
+            enum: [id, email]
+            default: id
+        - name: fields
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: Remove a user from the organization.
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: idtype
+          in: query
+          schema:
+            type: string
+            enum: [id, email]
+            default: id
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+    patch:
+      operationId: updateUser
+      summary: Update User
+      description: Update user details and attributes.
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: idtype
+          in: query
+          schema:
+            type: string
+            enum: [id, email]
+        - name: skipNotifyIfSso
+          in: query
+          schema:
+            type: boolean
+        - name: sendInvite
+          in: query
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/roles:
+    get:
+      operationId: listUserRoles
+      summary: List User Roles
+      description: Get available role options for the company.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Available roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+  /teams:
+    get:
+      operationId: listTeams
+      summary: List Teams
+      description: Returns a list of Team objects within the organization.
+      tags:
+        - Teams
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: name
+          in: query
+          description: Filter by team name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamsResponse'
+  /team:
+    post:
+      operationId: createTeam
+      summary: Create Team
+      description: Create a new team within the organization.
+      tags:
+        - Teams
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamRequest'
+      responses:
+        '201':
+          description: Team created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+  /team/{team_id}:
+    get:
+      operationId: getTeam
+      summary: Get Team
+      description: Retrieve team details and configuration.
+      tags:
+        - Teams
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+    delete:
+      operationId: deleteTeam
+      summary: Delete Team
+      description: Remove a team from the organization.
+      tags:
+        - Teams
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Team deleted
+    patch:
+      operationId: updateTeam
+      summary: Update Team
+      description: Update team properties.
+      tags:
+        - Teams
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTeamRequest'
+      responses:
+        '200':
+          description: Team updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+  /training/developer-leaderboard:
+    get:
+      operationId: getDeveloperLeaderboard
+      summary: Get Developer Leaderboard
+      description: >-
+        Returns a list of all developers within the organisation, with their current
+        stats as well as the change in stats over the report period.
+      tags:
+        - Training
+      parameters:
+        - name: report_period
+          in: query
+          description: Report period in days (1, 7, or 30)
+          schema:
+            type: integer
+            enum: [1, 7, 30]
+            default: 30
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: startdate
+          in: query
+          description: Start date filter (ISO 8601)
+          schema:
+            type: string
+            format: date
+        - name: enddate
+          in: query
+          description: End date filter (ISO 8601)
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Developer leaderboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardResponse'
+  /training/developer-leaderboard/search:
+    post:
+      operationId: searchDeveloperLeaderboard
+      summary: Search Developer Leaderboard
+      description: Search leaderboard with email, tag, and team filters.
+      tags:
+        - Training
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                team:
+                  type: string
+      responses:
+        '200':
+          description: Filtered leaderboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardResponse'
+  /training/developers-progress:
+    get:
+      operationId: getDevelopersProgress
+      summary: Get Developers Progress
+      description: Retrieve training progress with realm, level, and quest data for all developers.
+      tags:
+        - Training
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Developer training progress
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressResponse'
+  /training/developers-activity:
+    get:
+      operationId: getDevelopersActivity
+      summary: Get Developers Activity
+      description: Returns the detailed challenge log of all developers.
+      tags:
+        - Training
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Developer activity log
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityResponse'
+  /training/team-leaderboard:
+    get:
+      operationId: getTeamLeaderboard
+      summary: Get Team Leaderboard
+      description: Fetch team statistics and rankings.
+      tags:
+        - Training
+      parameters:
+        - name: omitInactive
+          in: query
+          description: Exclude inactive teams from results
+          schema:
+            type: boolean
+            default: false
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Team leaderboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamLeaderboardResponse'
+  /assessments:
+    get:
+      operationId: listAssessments
+      summary: List Assessments
+      description: Returns a list of Assessment objects within the organization.
+      tags:
+        - Assessments
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: startdate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: enddate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of assessments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentsResponse'
+  /assessments/{assessment_id}/attempts:
+    get:
+      operationId: listAssessmentAttempts
+      summary: List Assessment Attempts
+      description: Get detailed assessment attempt reports for a specific assessment.
+      tags:
+        - Assessments
+      parameters:
+        - name: assessment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: developer
+          in: query
+          description: Filter by developer email
+          schema:
+            type: string
+        - name: startdate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: enddate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Assessment attempts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptsResponse'
+  /assessments/{assessment_id}/assign:
+    post:
+      operationId: assignAssessment
+      summary: Assign Assessment
+      description: Assign an assessment to users or teams.
+      tags:
+        - Assessments
+      parameters:
+        - name: assessment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    type: string
+                  description: List of user emails to assign
+                teams:
+                  type: array
+                  items:
+                    type: string
+                  description: List of team IDs to assign
+                sendEmail:
+                  type: boolean
+                  description: Send assignment notification email
+                  default: true
+      responses:
+        '200':
+          description: Assessment assigned successfully
+  /tournaments:
+    get:
+      operationId: listTournaments
+      summary: List Tournaments
+      description: Returns a list of tournaments in the company.
+      tags:
+        - Tournaments
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: startdate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: enddate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of tournaments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentsResponse'
+  /tournaments/{tournament_id}/leaderboard:
+    get:
+      operationId: getTournamentLeaderboard
+      summary: Get Tournament Leaderboard
+      description: Returns the leaderboard for a single tournament.
+      tags:
+        - Tournaments
+      parameters:
+        - name: tournament_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Tournament leaderboard
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardResponse'
+  /courses:
+    get:
+      operationId: listCourses
+      summary: List Courses
+      description: Returns a list of Course objects available in the organization.
+      tags:
+        - Courses
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: includeBadges
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: List of courses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoursesResponse'
+  /courses/{course_id}/assign:
+    post:
+      operationId: assignCourse
+      summary: Assign Course
+      description: Assign a course to users or teams.
+      tags:
+        - Courses
+      parameters:
+        - name: course_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    type: string
+                teams:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Course assigned
+  /programs:
+    get:
+      operationId: listPrograms
+      summary: List Programs
+      description: Returns a list of Programs belonging to the company.
+      tags:
+        - Programs
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: List of programs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramsResponse'
+  /learning/resources:
+    get:
+      operationId: listLearningResources
+      summary: List Learning Resources
+      description: Return the list of available learning resources.
+      tags:
+        - Learning
+      responses:
+        '200':
+          description: Available learning resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LearningResourcesResponse'
+  /learning/progress:
+    get:
+      operationId: getLearningProgress
+      summary: Get Learning Progress
+      description: Shows learning resources which have been completed, read or watched.
+      tags:
+        - Learning
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Learning progress data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LearningProgressResponse'
+  /metrics/time-spent:
+    get:
+      operationId: getTimeSpent
+      summary: Get Time Spent
+      description: >-
+        Time spent on the platform across Assessments, Courses, Learning, Tournaments
+        and Training by user or team.
+      tags:
+        - Metrics
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: email
+          in: query
+          schema:
+            type: string
+        - name: tags
+          in: query
+          schema:
+            type: string
+        - name: team
+          in: query
+          schema:
+            type: string
+        - name: startdate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: enddate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Time spent metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSpentResponse'
+  /metrics/activity/teams/most-engaged:
+    get:
+      operationId: getMostEngagedTeams
+      summary: Get Most Engaged Teams
+      description: Identify the top engaged teams over a report period.
+      tags:
+        - Metrics
+      parameters:
+        - name: report_period
+          in: query
+          schema:
+            type: integer
+            enum: [1, 7, 30]
+        - name: number_of_teams
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: tags
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Most engaged teams
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  teams:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        team:
+                          $ref: '#/components/schemas/Team'
+                        engagement_score:
+                          type: number
+  /metrics/activity/users/most-engaged:
+    get:
+      operationId: getMostEngagedUsers
+      summary: Get Most Engaged Users
+      description: Identify the top engaged users over a report period.
+      tags:
+        - Metrics
+      parameters:
+        - name: report_period
+          in: query
+          schema:
+            type: integer
+            enum: [1, 7, 30]
+        - name: number_of_users
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: team_name
+          in: query
+          schema:
+            type: string
+        - name: tags
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Most engaged users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user:
+                          $ref: '#/components/schemas/User'
+                        engagement_score:
+                          type: number
+  /audit-log:
+    get:
+      operationId: getAuditLog
+      summary: Get Audit Log
+      description: Retrieve system audit logs with timestamp filtering.
+      tags:
+        - Audit
+      parameters:
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Audit log entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogResponse'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Report API key, Admin API key, or Team API Key
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastActiveAt:
+          type: string
+          format: date-time
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        total:
+          type: integer
+        page:
+          type: integer
+    CreateUserRequest:
+      type: object
+      required: [email]
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        memberCount:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    TeamsResponse:
+      type: object
+      properties:
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        total:
+          type: integer
+        page:
+          type: integer
+    CreateTeamRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    UpdateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    LeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              user:
+                $ref: '#/components/schemas/User'
+              points:
+                type: integer
+              completions:
+                type: integer
+              change:
+                type: integer
+                description: Rank change over report period
+        total:
+          type: integer
+        page:
+          type: integer
+    TeamLeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              team:
+                $ref: '#/components/schemas/Team'
+              points:
+                type: integer
+              completions:
+                type: integer
+    ProgressResponse:
+      type: object
+      properties:
+        developers:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/User'
+              realm:
+                type: string
+              level:
+                type: integer
+              quests_completed:
+                type: integer
+        total:
+          type: integer
+        page:
+          type: integer
+    ActivityResponse:
+      type: object
+      properties:
+        activities:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              email:
+                type: string
+              challenge:
+                type: string
+              language:
+                type: string
+              framework:
+                type: string
+              result:
+                type: string
+                enum: [pass, fail]
+              timestamp:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    AssessmentsResponse:
+      type: object
+      properties:
+        assessments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+                enum: [active, inactive, draft]
+              language:
+                type: string
+              difficulty:
+                type: string
+                enum: [beginner, intermediate, advanced]
+              createdAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    AttemptsResponse:
+      type: object
+      properties:
+        attempts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              developer:
+                $ref: '#/components/schemas/User'
+              score:
+                type: number
+              completed:
+                type: boolean
+              startedAt:
+                type: string
+                format: date-time
+              completedAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    TournamentsResponse:
+      type: object
+      properties:
+        tournaments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+              startDate:
+                type: string
+                format: date-time
+              endDate:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    CoursesResponse:
+      type: object
+      properties:
+        courses:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              language:
+                type: string
+              difficulty:
+                type: string
+              badges:
+                type: array
+                items:
+                  type: string
+        total:
+          type: integer
+        page:
+          type: integer
+    ProgramsResponse:
+      type: object
+      properties:
+        programs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              courses:
+                type: array
+                items:
+                  type: string
+        total:
+          type: integer
+        page:
+          type: integer
+    LearningResourcesResponse:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              type:
+                type: string
+                enum: [video, article, guide]
+              url:
+                type: string
+              language:
+                type: string
+    LearningProgressResponse:
+      type: object
+      properties:
+        progress:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              resource:
+                type: string
+              completedAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    TimeSpentResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              email:
+                type: string
+              training_minutes:
+                type: integer
+              assessment_minutes:
+                type: integer
+              course_minutes:
+                type: integer
+              tournament_minutes:
+                type: integer
+              learning_minutes:
+                type: integer
+              total_minutes:
+                type: integer
+        total:
+          type: integer
+        page:
+          type: integer
+    AuditLogResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              action:
+                type: string
+              actor:
+                type: string
+              target:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              details:
+                type: object
+        total:
+          type: integer
+        page:
+          type: integer
