@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "ab22c92f-8941-4d75-86b3-27cdd741cfcf",
+      "name": "Tournaments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ccffff76-0f4d-4b7e-9c30-498a0e56b6c9",
+          "name": "List Tournaments",
+          "request": {
+            "name": "List Tournaments",
+            "description": {
+              "content": "Returns a list of tournaments in the company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tournaments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dcb7d5b1-9d8f-476d-b188-9ee99ad972bf",
+              "name": "List of tournaments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tournaments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tournaments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"startDate\": \"2016-04-23T08:33:00.737Z\",\n      \"endDate\": \"1980-02-08T20:39:40.151Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"startDate\": \"1985-12-08T12:33:36.197Z\",\n      \"endDate\": \"2023-07-02T23:12:03.669Z\"\n    }\n  ],\n  \"total\": 4940,\n  \"page\": 9443\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d795b23-d129-4ec8-91be-eb1a65451e61",
+          "name": "Get Tournament Leaderboard",
+          "request": {
+            "name": "Get Tournament Leaderboard",
+            "description": {
+              "content": "Returns the leaderboard for a single tournament.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tournaments",
+                ":tournament_id",
+                "leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tournament_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b82bc46-6a20-4419-994c-46b659c7f720",
+              "name": "Tournament leaderboard",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tournaments",
+                    ":tournament_id",
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tournament_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 4141,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1990-01-10T00:32:05.521Z\",\n        \"lastActiveAt\": \"2013-11-07T13:55:48.881Z\"\n      },\n      \"points\": 747,\n      \"completions\": 2021,\n      \"change\": 829\n    },\n    {\n      \"rank\": 8705,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1951-12-18T12:31:16.480Z\",\n        \"lastActiveAt\": \"1984-09-04T10:48:40.388Z\"\n      },\n      \"points\": 2589,\n      \"completions\": 7437,\n      \"change\": 7973\n    }\n  ],\n  \"total\": 6080,\n  \"page\": 7227\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://portal-api.securecodewarrior.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f8978215-7fee-4b5a-b0cb-81f4946cd888",
+    "name": "Secure Code Warrior Portal Assessments Tournaments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.",
+      "type": "text/plain"
+    }
+  }
+}

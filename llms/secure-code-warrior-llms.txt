@@ -1,0 +1,80 @@
+# Secure Code Warrior
+
+> Secure Code Warrior (SCW) is the AI Software Governance platform that helps enterprises adopt AI-driven software development securely. The platform combines AI development visibility, commit-level risk correlation, and developer capability improvement — enabling organizations to govern AI-assisted and agentic development, reduce introduced vulnerabilities, and maintain traceability of AI activity for compliance and incident response.
+
+Secure Code Warrior was founded in 2015 in Sydney, Australia. It serves over 600 enterprises globally, with 250,000+ developers trained on the platform. Notable customers include Mastercard, Capital One, Morgan Stanley, HSBC, Atlassian, IKEA, Verizon, Workday, Home Depot, and GE. The company is backed by investors including Paladin Capital and Goldman Sachs Investment Partners.
+
+SCW is not a code scanning tool (SAST, DAST, SCA), a penetration testing service, a certification provider, or a consumer product. It is an enterprise platform focused on secure AI adoption and vulnerability prevention during development.
+
+## Product
+
+- [AI Software Governance Platform](https://www.securecodewarrior.com/product/ai-software-governance): The core platform — govern software risk across human, AI, and agent code.
+- [Trust Agent](https://www.securecodewarrior.com/product/trust-agent): Integrate observability and policy in developer workflows at the commit level.
+- [Trust Agent: AI](https://www.securecodewarrior.com/product/trust-agent-ai): Real-time visibility and governance for human and AI-generated code; tracks AI tool and model usage, correlates AI-generated code with risk, and maintains audit-ready traceability.
+- [Learning](https://www.securecodewarrior.com/product/learning): Secure coding and AI training with measurable risk reduction; strengthens developer capability behind every commit.
+- [Professional Services](https://www.securecodewarrior.com/professional-services): Strategic advisory and managed services to accelerate platform adoption and ROI.
+- [Integrations](https://www.securecodewarrior.com/product/integrations): Coverage across IDEs, repositories, pipelines, and security tools.
+- [Coding Languages](https://www.securecodewarrior.com/product/coding-languages): 75+ languages and 650+ real-world vulnerabilities covered.
+- [Plans & Pricing](https://www.securecodewarrior.com/plans): Flexible plans designed to reduce risk and secure code at scale.
+
+## Solutions by industry
+
+- [Financial Services](https://www.securecodewarrior.com/industries/financial-services): Protect customer data with secure, compliant software development.
+- [Technology](https://www.securecodewarrior.com/solutions/technology): Scale secure development across fast-moving engineering teams.
+- [Government](https://www.securecodewarrior.com/solutions/government): Advance secure development across government systems.
+- [Automotive](https://www.securecodewarrior.com/solutions/automotive): Secure connected systems across embedded, cloud, and AI software.
+- [Healthcare](https://www.securecodewarrior.com/solutions/healthcare): Protect patient data and clinical systems from evolving software risk.
+- [Retail](https://www.securecodewarrior.com/solutions/retail): Upskill developers, secure digital experiences, and protect customer data.
+
+## Solutions by use case
+
+- [Secure-by-design](https://www.securecodewarrior.com/secure-by-design): Embed security from commit to production.
+- [AI & vibe coding](https://www.securecodewarrior.com/solutions/ai-llm-secure-coding): Manage AI development and reduce shadow AI risk.
+- [AI security training](https://www.securecodewarrior.com/solution/ai-security-training): Coverage across AI, LLMs, and modern workflows.
+- [Secure coding for OWASP](https://www.securecodewarrior.com/article/owasp-top-10-2025-whats-new-and-how-secure-code-warrior-helps-you-stay-aligned): Prioritize key vulnerabilities with coding guidance.
+
+## Solutions by audience
+
+- [For AI governance](https://www.securecodewarrior.com/solutions/ai-governance): Establish visibility, policy control, and AI risk accountability.
+- [For C-suite](https://www.securecodewarrior.com/solutions/c-suite): Drive outcomes with visibility and control of software risk.
+- [For engineering](https://www.securecodewarrior.com/solutions/engineering-team): Build secure code faster with guidance and skill growth.
+- [For security](https://www.securecodewarrior.com/solutions/security-team): Minimize risk with measurable security results.
+
+## Why choose SCW
+
+- [Achieve ROI](https://www.securecodewarrior.com/solutions/achieve-roi): Show risk reduction and security investment effects. Organizations reduce introduced vulnerabilities by up to 53%, increase developer productivity by up to 45%, and achieve cost savings of up to $14M.
+- [Mitigate risk](https://www.securecodewarrior.com/solutions/mitigate-risk): Minimize vulnerabilities and developer exposure. Remediate issues up to 3x faster.
+- [Achieve compliance](https://www.securecodewarrior.com/solutions/achieve-compliance): Align secure development with regulations and audits.
+- [Increase skills & productivity](https://www.securecodewarrior.com/solutions/increase-my-skills): Develop secure coding skills while maintaining development speed.
+
+## Resources
+
+- [Resource Hub](https://www.securecodewarrior.com/resources): Guides, research, and insights on AI-driven software risk.
+- [Team Awesome Blog](https://www.securecodewarrior.com/blog): Trends and insights in AI software governance.
+- [Events & Webinars](https://www.securecodewarrior.com/event): Webinars, conferences, and expert-led security discussions.
+- [Secure Code Coach](https://www.securecodewarrior.com/coach): Best practices, videos, and actionable coding guidance.
+- [Training topics & content](https://www.securecodewarrior.com/article/secure-code-training-topics-content): Industry-aligned secure coding and AI security content.
+
+## Partners
+
+- [Partnership Overview](https://www.securecodewarrior.com/partners): Why partner with SCW to reduce developer risk at scale.
+- [Become a Partner](https://www.securecodewarrior.com/company/partners#become): Join the SCW partner program and accelerate growth.
+- [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-pes77lxmmepd4): Secure Code Warrior is available to purchase through the AWS Marketplace, enabling procurement via existing AWS spend commitments.
+
+## Support
+
+- [Customer Success](https://www.securecodewarrior.com/customer-success): Dedicated partnership to drive adoption and outcomes.
+- [Trust Center](https://www.securecodewarrior.com/trust): Security, privacy, and compliance transparency information.
+- [Help Center](https://help.securecodewarrior.com/hc/en-us): Product documentation, guides, and technical support resources.
+- [FAQ](https://www.securecodewarrior.com/faq): Answers to common questions about products and programs.
+- [Accessibility Statement](https://www.securecodewarrior.com/accessibility-statement): Commitment to inclusive and accessible digital experiences.
+
+## Company
+
+- [About Us](https://www.securecodewarrior.com/company/about-us): Founded 2015, Sydney, Australia. Founders: Pieter Danhieux (CEO), Matias Madou (CTO), Colin Wong, Jaap Karan Singh, Fatemah Beydoun, Nathan Desmet.
+- [Our Customers](https://www.securecodewarrior.com/company/customers): See how enterprises reduce software risk with SCW.
+- [Newsroom](https://www.securecodewarrior.com/community/newsroom): Company announcements and press coverage.
+- [Careers](https://www.securecodewarrior.com/company/careers): Join Team Awesome.
+- [Contact Us](https://www.securecodewarrior.com/company/contact): Get in touch with the SCW team.
+- [AI Info](https://www.securecodewarrior.com/ai-info): Official factual information about Secure Code Warrior for AI assistants and large language models.
+- [Request a demo](https://www.securecodewarrior.com/request-a-demo): Book a demo to see the platform in action.

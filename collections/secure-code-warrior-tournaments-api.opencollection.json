@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secure Code Warrior Portal Assessments Tournaments API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tournaments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tournaments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/tournaments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of tournaments in the company."
+        },
+        {
+          "info": {
+            "name": "Get Tournament Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/tournaments/:tournament_id/leaderboard",
+            "params": [
+              {
+                "name": "tournament_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the leaderboard for a single tournament."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

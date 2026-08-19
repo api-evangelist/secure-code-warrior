@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secure Code Warrior Portal Assessments Learning API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Learning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Learning Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/learning/resources"
+          },
+          "docs": "Return the list of available learning resources."
+        },
+        {
+          "info": {
+            "name": "Get Learning Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/learning/progress",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Shows learning resources which have been completed, read or watched."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

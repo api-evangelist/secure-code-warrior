@@ -1,0 +1,220 @@
+{
+  "item": [
+    {
+      "id": "aca8efef-f1e9-4e25-b519-3da759cde4ac",
+      "name": "Learning",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0df91992-8011-418b-9a1c-79103f0a937b",
+          "name": "List Learning Resources",
+          "request": {
+            "name": "List Learning Resources",
+            "description": {
+              "content": "Return the list of available learning resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "learning",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b991c9b0-f425-49cc-82e3-bf2c20e899b7",
+              "name": "Available learning resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "learning",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resources\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"article\",\n      \"url\": \"string\",\n      \"language\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"guide\",\n      \"url\": \"string\",\n      \"language\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a24359f4-1cef-4f2c-8568-718828072a2e",
+          "name": "Get Learning Progress",
+          "request": {
+            "name": "Get Learning Progress",
+            "description": {
+              "content": "Shows learning resources which have been completed, read or watched.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "learning",
+                "progress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a38ca203-8f48-4637-b956-8cbbdac3a812",
+              "name": "Learning progress data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "learning",
+                    "progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"progress\": [\n    {\n      \"userId\": \"string\",\n      \"resource\": \"string\",\n      \"completedAt\": \"1971-07-19T05:22:59.537Z\"\n    },\n    {\n      \"userId\": \"string\",\n      \"resource\": \"string\",\n      \"completedAt\": \"2010-03-28T23:21:51.444Z\"\n    }\n  ],\n  \"total\": 3665,\n  \"page\": 2272\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://portal-api.securecodewarrior.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a3100717-3fef-4bfe-8fbc-335098edff49",
+    "name": "Secure Code Warrior Portal Assessments Learning API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.",
+      "type": "text/plain"
+    }
+  }
+}

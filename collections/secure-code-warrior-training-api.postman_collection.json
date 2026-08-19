@@ -1,0 +1,556 @@
+{
+  "item": [
+    {
+      "id": "260f7404-67a7-489c-9bad-5ff739c2c02b",
+      "name": "Training",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc444ba4-d32b-4c37-b83b-3abfe1f4c7aa",
+          "name": "Get Developer Leaderboard",
+          "request": {
+            "name": "Get Developer Leaderboard",
+            "description": {
+              "content": "Returns a list of all developers within the organisation, with their current stats as well as the change in stats over the report period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developer-leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "report_period",
+                  "value": "30",
+                  "description": "Report period in days (1, 7, or 30)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "Start date filter (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "End date filter (ISO 8601)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "228ceac0-5793-4d00-a6f7-b63a041b3085",
+              "name": "Developer leaderboard data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developer-leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "report_period",
+                      "value": "30"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 9071,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1982-09-17T01:23:06.040Z\",\n        \"lastActiveAt\": \"1948-07-10T22:46:08.677Z\"\n      },\n      \"points\": 8413,\n      \"completions\": 8421,\n      \"change\": 7293\n    },\n    {\n      \"rank\": 6416,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1987-02-09T06:17:30.497Z\",\n        \"lastActiveAt\": \"1980-04-16T01:52:24.184Z\"\n      },\n      \"points\": 6358,\n      \"completions\": 617,\n      \"change\": 8491\n    }\n  ],\n  \"total\": 3260,\n  \"page\": 6657\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3555c727-b5b7-428e-82df-cbd8582e60c1",
+          "name": "Search Developer Leaderboard",
+          "request": {
+            "name": "Search Developer Leaderboard",
+            "description": {
+              "content": "Search leaderboard with email, tag, and team filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developer-leaderboard",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2da3799f-b2ee-4caa-ba6e-009c99ea5a89",
+              "name": "Filtered leaderboard data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developer-leaderboard",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"team\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 3499,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1984-03-21T20:17:30.613Z\",\n        \"lastActiveAt\": \"1998-01-02T07:58:43.886Z\"\n      },\n      \"points\": 566,\n      \"completions\": 1860,\n      \"change\": 7413\n    },\n    {\n      \"rank\": 1312,\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1971-05-15T13:42:32.554Z\",\n        \"lastActiveAt\": \"1992-12-08T08:44:19.712Z\"\n      },\n      \"points\": 6645,\n      \"completions\": 2072,\n      \"change\": 8932\n    }\n  ],\n  \"total\": 6138,\n  \"page\": 6267\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e029ce3-d73a-44e8-8400-e9f9f96fc813",
+          "name": "Get Developers Progress",
+          "request": {
+            "name": "Get Developers Progress",
+            "description": {
+              "content": "Retrieve training progress with realm, level, and quest data for all developers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developers-progress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5d7167d-3ae2-4d5b-bb7a-0423229bdc62",
+              "name": "Developer training progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developers-progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"developers\": [\n    {\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2007-10-17T00:58:14.723Z\",\n        \"lastActiveAt\": \"1951-09-26T14:55:32.997Z\"\n      },\n      \"realm\": \"string\",\n      \"level\": 1904,\n      \"quests_completed\": 785\n    },\n    {\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1962-04-30T11:52:25.751Z\",\n        \"lastActiveAt\": \"1958-07-10T13:20:13.287Z\"\n      },\n      \"realm\": \"string\",\n      \"level\": 8289,\n      \"quests_completed\": 6876\n    }\n  ],\n  \"total\": 2340,\n  \"page\": 6023\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c93cf754-dd81-4713-ab55-15d62beb5637",
+          "name": "Get Developers Activity",
+          "request": {
+            "name": "Get Developers Activity",
+            "description": {
+              "content": "Returns the detailed challenge log of all developers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "developers-activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52d87f7c-f3c8-4cfe-a786-ee1f36526bb2",
+              "name": "Developer activity log",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "developers-activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activities\": [\n    {\n      \"userId\": \"string\",\n      \"email\": \"string\",\n      \"challenge\": \"string\",\n      \"language\": \"string\",\n      \"framework\": \"string\",\n      \"result\": \"fail\",\n      \"timestamp\": \"2014-01-11T14:33:29.704Z\"\n    },\n    {\n      \"userId\": \"string\",\n      \"email\": \"string\",\n      \"challenge\": \"string\",\n      \"language\": \"string\",\n      \"framework\": \"string\",\n      \"result\": \"pass\",\n      \"timestamp\": \"2024-04-28T02:55:28.607Z\"\n    }\n  ],\n  \"total\": 3290,\n  \"page\": 9799\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86d016ac-9df0-4157-89d2-f407727772c5",
+          "name": "Get Team Leaderboard",
+          "request": {
+            "name": "Get Team Leaderboard",
+            "description": {
+              "content": "Fetch team statistics and rankings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "training",
+                "team-leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "omitInactive",
+                  "value": "false",
+                  "description": "Exclude inactive teams from results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f02ceaf5-bf87-400e-91ba-66bf7cb2b3bb",
+              "name": "Team leaderboard data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "training",
+                    "team-leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "omitInactive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"rank\": 1408,\n      \"team\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"memberCount\": 7575,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2000-07-29T06:23:22.455Z\"\n      },\n      \"points\": 1923,\n      \"completions\": 4489\n    },\n    {\n      \"rank\": 9523,\n      \"team\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"memberCount\": 9890,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"1955-06-04T04:30:21.747Z\"\n      },\n      \"points\": 9928,\n      \"completions\": 7231\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://portal-api.securecodewarrior.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2abdd1be-c65f-4305-8b7a-8672fc0caa84",
+    "name": "Secure Code Warrior Portal Assessments Training API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.",
+      "type": "text/plain"
+    }
+  }
+}

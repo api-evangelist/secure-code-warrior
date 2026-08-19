@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secure Code Warrior Portal Assessments API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assessments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assessments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/assessments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of Assessment objects within the organization."
+        },
+        {
+          "info": {
+            "name": "List Assessment Attempts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/assessments/:assessment_id/attempts",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "developer",
+                "value": "",
+                "type": "query",
+                "description": "Filter by developer email"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get detailed assessment attempt reports for a specific assessment."
+        },
+        {
+          "info": {
+            "name": "Assign Assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/assessments/:assessment_id/assign",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign an assessment to users or teams."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

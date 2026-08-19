@@ -1,0 +1,404 @@
+{
+  "item": [
+    {
+      "id": "ff03a87e-7b33-4682-94e6-177475c620c4",
+      "name": "Assessments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5bf4b03-ff51-462d-91c0-b180cc342b22",
+          "name": "List Assessments",
+          "request": {
+            "name": "List Assessments",
+            "description": {
+              "content": "Returns a list of Assessment objects within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2bc953c-dd76-4c22-96ea-6d43fb0fed05",
+              "name": "List of assessments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"active\",\n      \"language\": \"string\",\n      \"difficulty\": \"advanced\",\n      \"createdAt\": \"1952-12-12T06:22:36.122Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"draft\",\n      \"language\": \"string\",\n      \"difficulty\": \"intermediate\",\n      \"createdAt\": \"1958-09-10T11:42:25.206Z\"\n    }\n  ],\n  \"total\": 3972,\n  \"page\": 751\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c866b260-e4a6-49eb-a58c-4237914bd6df",
+          "name": "List Assessment Attempts",
+          "request": {
+            "name": "List Assessment Attempts",
+            "description": {
+              "content": "Get detailed assessment attempt reports for a specific assessment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessment_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "developer",
+                  "value": "<string>",
+                  "description": "Filter by developer email"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de088070-5139-4b98-9e24-6192a5fd6fd6",
+              "name": "Assessment attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessment_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "developer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attempts\": [\n    {\n      \"id\": \"string\",\n      \"developer\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2013-08-28T06:54:37.046Z\",\n        \"lastActiveAt\": \"1984-02-26T06:37:18.918Z\"\n      },\n      \"score\": 611.5439809711864,\n      \"completed\": false,\n      \"startedAt\": \"2018-11-12T05:48:18.799Z\",\n      \"completedAt\": \"1977-01-19T08:25:51.674Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"developer\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"role\": \"string\",\n        \"teams\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"createdAt\": \"2024-02-12T06:57:26.637Z\",\n        \"lastActiveAt\": \"2006-06-20T00:25:21.727Z\"\n      },\n      \"score\": 5265.274657539605,\n      \"completed\": true,\n      \"startedAt\": \"1963-12-14T08:06:43.016Z\",\n      \"completedAt\": \"2010-03-16T23:57:55.834Z\"\n    }\n  ],\n  \"total\": 7146,\n  \"page\": 1379\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "158ef1a1-6dd7-44b3-b304-68323363400f",
+          "name": "Assign Assessment",
+          "request": {
+            "name": "Assign Assessment",
+            "description": {
+              "content": "Assign an assessment to users or teams.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessment_id",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sendEmail\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a444770-2d99-4d8a-a706-1a1fe69fad48",
+              "name": "Assessment assigned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessment_id",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"teams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sendEmail\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://portal-api.securecodewarrior.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ae724c40-1ab7-44ee-af31-6e60510659f1",
+    "name": "Secure Code Warrior Portal Assessments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.",
+      "type": "text/plain"
+    }
+  }
+}

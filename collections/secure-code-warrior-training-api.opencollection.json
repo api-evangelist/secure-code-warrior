@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secure Code Warrior Portal Assessments Training API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Training",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Developer Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developer-leaderboard",
+            "params": [
+              {
+                "name": "report_period",
+                "value": "",
+                "type": "query",
+                "description": "Report period in days (1, 7, or 30)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter (ISO 8601)"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query",
+                "description": "End date filter (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Returns a list of all developers within the organisation, with their current stats as well as the change in stats over the report period."
+        },
+        {
+          "info": {
+            "name": "Search Developer Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developer-leaderboard/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search leaderboard with email, tag, and team filters."
+        },
+        {
+          "info": {
+            "name": "Get Developers Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developers-progress",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve training progress with realm, level, and quest data for all developers."
+        },
+        {
+          "info": {
+            "name": "Get Developers Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/developers-activity",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the detailed challenge log of all developers."
+        },
+        {
+          "info": {
+            "name": "Get Team Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-api.securecodewarrior.com/api/v2/training/team-leaderboard",
+            "params": [
+              {
+                "name": "omitInactive",
+                "value": "",
+                "type": "query",
+                "description": "Exclude inactive teams from results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch team statistics and rankings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
