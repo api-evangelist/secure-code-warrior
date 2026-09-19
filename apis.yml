@@ -27,6 +27,8 @@ apis:
   humanURL: https://portal-api.securecodewarrior.com/api/docs/v2/
   baseURL: https://portal-api.securecodewarrior.com/api/v2
   tags:
+  - Assessment
+  tags_raw:
   - Assessments
   properties:
   - type: OpenAPI
