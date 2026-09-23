@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Secure Code Warrior Portal Assessments Users API
+  title: Secure Code Warrior Portal Users API
   description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
   version: 2.0.0
   contact:
@@ -278,6 +278,17 @@ components:
           type: array
           items:
             type: string
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        total:
+          type: integer
+        page:
+          type: integer
     UpdateUserRequest:
       type: object
       properties:
@@ -295,17 +306,6 @@ components:
           type: array
           items:
             type: string
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        total:
-          type: integer
-        page:
-          type: integer
   securitySchemes:
     apiKey:
       type: apiKey

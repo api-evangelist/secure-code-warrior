@@ -1,16 +1,7 @@
 {
   "provider": "secure-code-warrior",
   "sources": [
-    "secure-code-warrior-assessments-api-openapi.yml",
-    "secure-code-warrior-audit-api-openapi.yml",
-    "secure-code-warrior-courses-api-openapi.yml",
-    "secure-code-warrior-learning-api-openapi.yml",
-    "secure-code-warrior-metrics-api-openapi.yml",
-    "secure-code-warrior-programs-api-openapi.yml",
-    "secure-code-warrior-teams-api-openapi.yml",
-    "secure-code-warrior-tournaments-api-openapi.yml",
-    "secure-code-warrior-training-api-openapi.yml",
-    "secure-code-warrior-users-api-openapi.yml"
+    "_original/secure-code-warrior-portal-openapi.yml"
   ],
   "outputs": [
     "secure-code-warrior-assessments-api-openapi.yml",
@@ -27,6 +18,31 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "secure-code-warrior-portal-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Assessments",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Audit",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Courses",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Learning",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Metrics",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Programs",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Teams",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Tournaments",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Training",
+    "secure-code-warrior-portal-openapi.yml: declared missing tag: Users",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "secure-code-warrior-assessments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-audit-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-courses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-learning-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-programs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-tournaments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-training-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "secure-code-warrior-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

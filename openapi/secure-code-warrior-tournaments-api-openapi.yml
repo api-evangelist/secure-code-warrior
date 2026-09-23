@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Secure Code Warrior Portal Assessments Tournaments API
+  title: Secure Code Warrior Portal Tournaments API
   description: The Secure Code Warrior Portal API provides programmatic access to the developer security training platform. Manage users, teams, training progress, assessments, tournaments, courses, programs, metrics, and audit logs. Supports multiple API key types for granular access control across US and EU regions.
   version: 2.0.0
   contact:
@@ -103,29 +103,6 @@ components:
         lastActiveAt:
           type: string
           format: date-time
-    LeaderboardResponse:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            type: object
-            properties:
-              rank:
-                type: integer
-              user:
-                $ref: '#/components/schemas/User'
-              points:
-                type: integer
-              completions:
-                type: integer
-              change:
-                type: integer
-                description: Rank change over report period
-        total:
-          type: integer
-        page:
-          type: integer
     TournamentsResponse:
       type: object
       properties:
@@ -146,6 +123,29 @@ components:
               endDate:
                 type: string
                 format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    LeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              user:
+                $ref: '#/components/schemas/User'
+              points:
+                type: integer
+              completions:
+                type: integer
+              change:
+                type: integer
+                description: Rank change over report period
         total:
           type: integer
         page:
