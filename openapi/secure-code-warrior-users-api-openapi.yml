@@ -230,6 +230,23 @@ paths:
                       type: string
 components:
   schemas:
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
     User:
       type: object
       properties:
@@ -257,27 +274,6 @@ components:
         lastActiveAt:
           type: string
           format: date-time
-    CreateUserRequest:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        role:
-          type: string
-        teams:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            type: string
     UsersResponse:
       type: object
       properties:
@@ -289,9 +285,13 @@ components:
           type: integer
         page:
           type: integer
-    UpdateUserRequest:
+    CreateUserRequest:
       type: object
+      required:
+      - email
       properties:
+        email:
+          type: string
         firstName:
           type: string
         lastName:

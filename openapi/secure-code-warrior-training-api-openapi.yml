@@ -153,83 +153,6 @@ paths:
                 $ref: '#/components/schemas/TeamLeaderboardResponse'
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        role:
-          type: string
-        teams:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            type: string
-        createdAt:
-          type: string
-          format: date-time
-        lastActiveAt:
-          type: string
-          format: date-time
-    ProgressResponse:
-      type: object
-      properties:
-        developers:
-          type: array
-          items:
-            type: object
-            properties:
-              user:
-                $ref: '#/components/schemas/User'
-              realm:
-                type: string
-              level:
-                type: integer
-              quests_completed:
-                type: integer
-        total:
-          type: integer
-        page:
-          type: integer
-    ActivityResponse:
-      type: object
-      properties:
-        activities:
-          type: array
-          items:
-            type: object
-            properties:
-              userId:
-                type: string
-              email:
-                type: string
-              challenge:
-                type: string
-              language:
-                type: string
-              framework:
-                type: string
-              result:
-                type: string
-                enum:
-                - pass
-                - fail
-              timestamp:
-                type: string
-                format: date-time
-        total:
-          type: integer
-        page:
-          type: integer
     TeamLeaderboardResponse:
       type: object
       properties:
@@ -269,6 +192,26 @@ components:
           type: integer
         page:
           type: integer
+    ProgressResponse:
+      type: object
+      properties:
+        developers:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/User'
+              realm:
+                type: string
+              level:
+                type: integer
+              quests_completed:
+                type: integer
+        total:
+          type: integer
+        page:
+          type: integer
     Team:
       type: object
       properties:
@@ -287,6 +230,63 @@ components:
         createdAt:
           type: string
           format: date-time
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastActiveAt:
+          type: string
+          format: date-time
+    ActivityResponse:
+      type: object
+      properties:
+        activities:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              email:
+                type: string
+              challenge:
+                type: string
+              language:
+                type: string
+              framework:
+                type: string
+              result:
+                type: string
+                enum:
+                - pass
+                - fail
+              timestamp:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
   securitySchemes:
     apiKey:
       type: apiKey

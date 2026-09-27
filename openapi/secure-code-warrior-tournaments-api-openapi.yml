@@ -76,6 +76,30 @@ paths:
                 $ref: '#/components/schemas/LeaderboardResponse'
 components:
   schemas:
+    TournamentsResponse:
+      type: object
+      properties:
+        tournaments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+              startDate:
+                type: string
+                format: date-time
+              endDate:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
     User:
       type: object
       properties:
@@ -103,30 +127,6 @@ components:
         lastActiveAt:
           type: string
           format: date-time
-    TournamentsResponse:
-      type: object
-      properties:
-        tournaments:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              status:
-                type: string
-              startDate:
-                type: string
-                format: date-time
-              endDate:
-                type: string
-                format: date-time
-        total:
-          type: integer
-        page:
-          type: integer
     LeaderboardResponse:
       type: object
       properties:
