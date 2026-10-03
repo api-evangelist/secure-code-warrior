@@ -51,25 +51,6 @@ paths:
                 $ref: '#/components/schemas/LearningProgressResponse'
 components:
   schemas:
-    LearningProgressResponse:
-      type: object
-      properties:
-        progress:
-          type: array
-          items:
-            type: object
-            properties:
-              userId:
-                type: string
-              resource:
-                type: string
-              completedAt:
-                type: string
-                format: date-time
-        total:
-          type: integer
-        page:
-          type: integer
     LearningResourcesResponse:
       type: object
       properties:
@@ -92,6 +73,25 @@ components:
                 type: string
               language:
                 type: string
+    LearningProgressResponse:
+      type: object
+      properties:
+        progress:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              resource:
+                type: string
+              completedAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
   securitySchemes:
     apiKey:
       type: apiKey

@@ -230,6 +230,27 @@ paths:
                       type: string
 components:
   schemas:
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
     UpdateUserRequest:
       type: object
       properties:
@@ -247,6 +268,17 @@ components:
           type: array
           items:
             type: string
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        total:
+          type: integer
+        page:
+          type: integer
     User:
       type: object
       properties:
@@ -274,38 +306,6 @@ components:
         lastActiveAt:
           type: string
           format: date-time
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        total:
-          type: integer
-        page:
-          type: integer
-    CreateUserRequest:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        role:
-          type: string
-        teams:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            type: string
   securitySchemes:
     apiKey:
       type: apiKey

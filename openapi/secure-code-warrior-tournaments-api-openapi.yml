@@ -100,6 +100,29 @@ components:
           type: integer
         page:
           type: integer
+    LeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              user:
+                $ref: '#/components/schemas/User'
+              points:
+                type: integer
+              completions:
+                type: integer
+              change:
+                type: integer
+                description: Rank change over report period
+        total:
+          type: integer
+        page:
+          type: integer
     User:
       type: object
       properties:
@@ -127,29 +150,6 @@ components:
         lastActiveAt:
           type: string
           format: date-time
-    LeaderboardResponse:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            type: object
-            properties:
-              rank:
-                type: integer
-              user:
-                $ref: '#/components/schemas/User'
-              points:
-                type: integer
-              completions:
-                type: integer
-              change:
-                type: integer
-                description: Rank change over report period
-        total:
-          type: integer
-        page:
-          type: integer
   securitySchemes:
     apiKey:
       type: apiKey

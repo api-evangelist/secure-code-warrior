@@ -212,51 +212,6 @@ components:
           type: integer
         page:
           type: integer
-    Team:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        memberCount:
-          type: integer
-        tags:
-          type: array
-          items:
-            type: string
-        createdAt:
-          type: string
-          format: date-time
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        role:
-          type: string
-        teams:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            type: string
-        createdAt:
-          type: string
-          format: date-time
-        lastActiveAt:
-          type: string
-          format: date-time
     ActivityResponse:
       type: object
       properties:
@@ -287,6 +242,51 @@ components:
           type: integer
         page:
           type: integer
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastActiveAt:
+          type: string
+          format: date-time
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        memberCount:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
   securitySchemes:
     apiKey:
       type: apiKey
