@@ -276,6 +276,9 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/secure-code-warrior-capability-edges.yml
+    name: Secure Code Warrior Business Capability Map
   - type: AgenticAccess
     url: agentic-access/secure-code-warrior-agentic-access.yml
   - type: TrustCenter

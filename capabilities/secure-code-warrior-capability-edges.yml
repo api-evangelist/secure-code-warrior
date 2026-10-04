@@ -1,0 +1,36 @@
+slug: secure-code-warrior
+provider: Secure Code Warrior
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Training
+  spec_file: secure-code-warrior-training-api-openapi.yml
+  capability_id: BC-620.60
+  capability_id_l1: BC-620
+  capability_name: Security Awareness Management
+  confidence: 0.72
+  evidence: GET /training/developers-progress  getDevelopersProgress; GET /training/developer-leaderboard
+  reason: Developer training progress, activity and leaderboards on a secure-coding training platform
+    plainly realise security training/awareness management; chosen over generic L&D because the content
+    domain is security.
+- tag: Assessments
+  spec_file: secure-code-warrior-assessments-api-openapi.yml
+  capability_id: BC-620.60
+  capability_id_l1: BC-620
+  capability_name: Security Awareness Management
+  confidence: 0.7
+  evidence: 'POST /assessments/{assessment_id}/assign assignAssessment; vendor: ''provides security training,
+    coaching, and assessments to help developers write secure code'''
+  reason: 'Assigning and tracking secure-coding assessment attempts for developers is security awareness/training
+    administration. Ambiguity: it could equally be read as BC-300.40 Learning & Development; the explicitly
+    security-training nature of the platform tips it to BC-620.60, so confidence is moderate.'
