@@ -187,24 +187,6 @@ components:
           type: integer
         page:
           type: integer
-    Team:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        memberCount:
-          type: integer
-        tags:
-          type: array
-          items:
-            type: string
-        createdAt:
-          type: string
-          format: date-time
     User:
       type: object
       properties:
@@ -230,6 +212,24 @@ components:
           type: string
           format: date-time
         lastActiveAt:
+          type: string
+          format: date-time
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        memberCount:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
           type: string
           format: date-time
   securitySchemes:

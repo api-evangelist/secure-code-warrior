@@ -230,6 +230,34 @@ paths:
                       type: string
 components:
   schemas:
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        total:
+          type: integer
+        page:
+          type: integer
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
     CreateUserRequest:
       type: object
       required:
@@ -251,34 +279,6 @@ components:
           type: array
           items:
             type: string
-    UpdateUserRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        role:
-          type: string
-        teams:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            type: string
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        total:
-          type: integer
-        page:
-          type: integer
     User:
       type: object
       properties:

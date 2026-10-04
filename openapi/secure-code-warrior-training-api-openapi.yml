@@ -153,22 +153,6 @@ paths:
                 $ref: '#/components/schemas/TeamLeaderboardResponse'
 components:
   schemas:
-    TeamLeaderboardResponse:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            type: object
-            properties:
-              rank:
-                type: integer
-              team:
-                $ref: '#/components/schemas/Team'
-              points:
-                type: integer
-              completions:
-                type: integer
     LeaderboardResponse:
       type: object
       properties:
@@ -188,26 +172,6 @@ components:
               change:
                 type: integer
                 description: Rank change over report period
-        total:
-          type: integer
-        page:
-          type: integer
-    ProgressResponse:
-      type: object
-      properties:
-        developers:
-          type: array
-          items:
-            type: object
-            properties:
-              user:
-                $ref: '#/components/schemas/User'
-              realm:
-                type: string
-              level:
-                type: integer
-              quests_completed:
-                type: integer
         total:
           type: integer
         page:
@@ -242,6 +206,26 @@ components:
           type: integer
         page:
           type: integer
+    ProgressResponse:
+      type: object
+      properties:
+        developers:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/User'
+              realm:
+                type: string
+              level:
+                type: integer
+              quests_completed:
+                type: integer
+        total:
+          type: integer
+        page:
+          type: integer
     User:
       type: object
       properties:
@@ -269,6 +253,22 @@ components:
         lastActiveAt:
           type: string
           format: date-time
+    TeamLeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              team:
+                $ref: '#/components/schemas/Team'
+              points:
+                type: integer
+              completions:
+                type: integer
     Team:
       type: object
       properties:

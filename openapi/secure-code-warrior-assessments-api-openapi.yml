@@ -124,32 +124,6 @@ paths:
           description: Assessment assigned successfully
 components:
   schemas:
-    AttemptsResponse:
-      type: object
-      properties:
-        attempts:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              developer:
-                $ref: '#/components/schemas/User'
-              score:
-                type: number
-              completed:
-                type: boolean
-              startedAt:
-                type: string
-                format: date-time
-              completedAt:
-                type: string
-                format: date-time
-        total:
-          type: integer
-        page:
-          type: integer
     AssessmentsResponse:
       type: object
       properties:
@@ -177,6 +151,32 @@ components:
                 - intermediate
                 - advanced
               createdAt:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
+    AttemptsResponse:
+      type: object
+      properties:
+        attempts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              developer:
+                $ref: '#/components/schemas/User'
+              score:
+                type: number
+              completed:
+                type: boolean
+              startedAt:
+                type: string
+                format: date-time
+              completedAt:
                 type: string
                 format: date-time
         total:
