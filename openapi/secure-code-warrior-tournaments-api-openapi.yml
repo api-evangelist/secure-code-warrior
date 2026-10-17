@@ -76,53 +76,6 @@ paths:
                 $ref: '#/components/schemas/LeaderboardResponse'
 components:
   schemas:
-    TournamentsResponse:
-      type: object
-      properties:
-        tournaments:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              status:
-                type: string
-              startDate:
-                type: string
-                format: date-time
-              endDate:
-                type: string
-                format: date-time
-        total:
-          type: integer
-        page:
-          type: integer
-    LeaderboardResponse:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            type: object
-            properties:
-              rank:
-                type: integer
-              user:
-                $ref: '#/components/schemas/User'
-              points:
-                type: integer
-              completions:
-                type: integer
-              change:
-                type: integer
-                description: Rank change over report period
-        total:
-          type: integer
-        page:
-          type: integer
     User:
       type: object
       properties:
@@ -150,6 +103,53 @@ components:
         lastActiveAt:
           type: string
           format: date-time
+    LeaderboardResponse:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              rank:
+                type: integer
+              user:
+                $ref: '#/components/schemas/User'
+              points:
+                type: integer
+              completions:
+                type: integer
+              change:
+                type: integer
+                description: Rank change over report period
+        total:
+          type: integer
+        page:
+          type: integer
+    TournamentsResponse:
+      type: object
+      properties:
+        tournaments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+              startDate:
+                type: string
+                format: date-time
+              endDate:
+                type: string
+                format: date-time
+        total:
+          type: integer
+        page:
+          type: integer
   securitySchemes:
     apiKey:
       type: apiKey

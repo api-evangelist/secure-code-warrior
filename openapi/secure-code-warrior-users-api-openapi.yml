@@ -241,23 +241,6 @@ components:
           type: integer
         page:
           type: integer
-    UpdateUserRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        role:
-          type: string
-        teams:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            type: string
     CreateUserRequest:
       type: object
       required:
@@ -306,6 +289,23 @@ components:
         lastActiveAt:
           type: string
           format: date-time
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
   securitySchemes:
     apiKey:
       type: apiKey

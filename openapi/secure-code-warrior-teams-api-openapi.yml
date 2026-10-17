@@ -121,41 +121,6 @@ paths:
                 $ref: '#/components/schemas/Team'
 components:
   schemas:
-    TeamsResponse:
-      type: object
-      properties:
-        teams:
-          type: array
-          items:
-            $ref: '#/components/schemas/Team'
-        total:
-          type: integer
-        page:
-          type: integer
-    UpdateTeamRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-    CreateTeamRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
     Team:
       type: object
       properties:
@@ -174,6 +139,41 @@ components:
         createdAt:
           type: string
           format: date-time
+    TeamsResponse:
+      type: object
+      properties:
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        total:
+          type: integer
+        page:
+          type: integer
+    CreateTeamRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    UpdateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
   securitySchemes:
     apiKey:
       type: apiKey
